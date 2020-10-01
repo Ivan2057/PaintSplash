@@ -1,0 +1,69 @@
+{
+  "project_info": {
+    "project_number": "755918972956",
+    "firebase_url": "https://paintsplash.firebaseio.com",
+    "project_id": "paintsplash",
+    "storage_bucket": "paintsplash.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755918972956:android:59191a68c21bb09a79d7d9",
+        "android_client_info": {
+          "package_name": "com.ProyectoFinal.PaintSplash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755918972956-ml18dj91l24lvlvru7klo57b46ds3hkl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNGKzzdGNtrfAX8w_2i9uQ4kpXU8eUPu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755918972956-ml18dj91l24lvlvru7klo57b46ds3hkl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:755918972956:android:e4084dea706b9f1679d7d9",
+        "android_client_info": {
+          "package_name": "com.godwes.paintsplash"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "755918972956-ml18dj91l24lvlvru7klo57b46ds3hkl.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDNGKzzdGNtrfAX8w_2i9uQ4kpXU8eUPu0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "755918972956-ml18dj91l24lvlvru7klo57b46ds3hkl.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
