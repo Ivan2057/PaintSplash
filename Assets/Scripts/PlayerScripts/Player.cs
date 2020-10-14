@@ -15,13 +15,13 @@ namespace Assets.Scripts.PlayerScripts
         #region Declarations
         [SerializeField]
         public GameObject jugador;
+        [SerializeField]
+        private GameObject pistola;
         public static NetworkConnection userConnection;
         private Rigidbody rigidBody;
         private int BanderaTeam;
 
         [SerializeField] Camera miCamera;
-
-
         public static List<Transform> spawnPoints = new List<Transform>();
 
         [SyncVar]
@@ -56,10 +56,7 @@ namespace Assets.Scripts.PlayerScripts
 
         private GameModeCTF gameModeCTF;
 
-        [SyncVar(hook = nameof(OtherPlayerSyncUI))]
         public int ScoreTeam0 = 0;
-
-        [SyncVar]
         public int ScoreTeam1 = 0;
 
         public static Transform posInicial;
@@ -71,7 +68,14 @@ namespace Assets.Scripts.PlayerScripts
         private TextMeshProUGUI time1Puntos;
         private TextMeshProUGUI time2Puntos;
 
+
         private Collider lastCollision;
+
+
+
+        public int muertes = 0;
+        public int kills = 0;
+        public int points = 0;
         #endregion setup
 
         #region setup
@@ -92,8 +96,8 @@ namespace Assets.Scripts.PlayerScripts
                 canvasFin = GetComponent<EndGame>();
             }
             GetGameObjectsFromMap();
-
             Setup();
+            GameMode.LoadPlayer(this);
         }
 
         public void Setup()
@@ -102,12 +106,14 @@ namespace Assets.Scripts.PlayerScripts
             if (rigidBody == null)
             {
                 Debug.LogError("Player Rigidbody not found");
+
             }
             wasEnabled = new bool[disableOnDeath.Length];
             for (int i = 0; i < wasEnabled.Length; i++)
             {
                 wasEnabled[i] = disableOnDeath[i].enabled;
             }
+            
             SetDefaults();
         }
 
@@ -180,6 +186,7 @@ namespace Assets.Scripts.PlayerScripts
             {
                 DropWeapon(currentWeapon);
             }
+
         }
 
         [Client]
@@ -223,9 +230,27 @@ namespace Assets.Scripts.PlayerScripts
             return vida;
         }
 
-        [ClientRpc]
-        public void RpcTakeDamage(int _amount, GameObject jugadorPeticion)
+        public string GetHealth()
         {
+            return currentHealth.ToString();
+        }
+        public void AddKill()
+        {
+            this.kills++;
+            GameMode.UpdatePlayer(this);
+        }
+
+        [ClientRpc]
+        public void RpcUpdateScoreboard()
+        {
+            GameMode.LoadPlayer(this);
+        } 
+
+        [ClientRpc]
+        public void RpcTakeDamage(int _amount, GameObject jugadorPeticion, GameObject asesino)
+        {
+
+            
             if (isDead)
             {
                 return;
@@ -235,6 +260,7 @@ namespace Assets.Scripts.PlayerScripts
             Debug.Log(transform.name + " now has " + currentHealth + " health.");
             if (currentHealth <= 0)
             {
+                asesino.GetComponent<Player>().AddKill();
                 jugadorPeticion.GetComponent<Player>().Die();
             }
 
@@ -266,6 +292,8 @@ namespace Assets.Scripts.PlayerScripts
             Debug.Log(transform.name + " esta muerto!");
 
             StartCoroutine(Respawn());
+
+            muertes++;
         }
 
         private IEnumerator Respawn()
@@ -469,34 +497,11 @@ namespace Assets.Scripts.PlayerScripts
 
         void ShowVidaCanvas(int oldValue, int newValue)
         {
-            hp.text = newValue.ToString();
-            Debug.Log("Hook - Cambiando vida");
-        }
-
-        private void OtherPlayerSyncUI(int oldValue, int newValue)
-        {/*
-            Debug.Log("OthePLayerSyncUI OLD VALUE: " + oldValue);
-            Debug.Log("OthePLayerSyncUI NEW VALUE: " + newValue);
-            
-            if (Team == 0)
+            if (GetComponent<NetworkIdentity>().hasAuthority)
             {
-                try
-                {
-                    GameObject.Find("Time1Puntos").GetComponent<TextMeshProUGUI>().text = gameModeCTF.ScoreTeam0.ToString();
-                }
-                catch(Exception e)
-                {
-                    Debug.LogError(e.Message);
-                }
-                
-                Debug.Log("Team 1 puntos: " + gameModeCTF.ScoreTeam0 + " " + ScoreTeam0);
+                hp.text = newValue.ToString();
+                Debug.Log("Hook - Cambiando vida");
             }
-            else
-            {
-                GameObject.Find("Time2Puntos").GetComponent<TextMeshProUGUI>().text = gameModeCTF.ScoreTeam1.ToString();
-                Debug.Log("Teamsssd 1 puntos: " + gameModeCTF.ScoreTeam1 + " " + ScoreTeam1);
-            }
-            */
         }
 
         #endregion Canvas/Score

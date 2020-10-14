@@ -1,0 +1,190 @@
+fileFormatVersion: 2
+guid: 9a943d33d4d681246b6c70b2cb812505
+timeCreated: 1448367735
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: brick1
+    100002: brick1_002
+    100004: doors1
+    100006: doors1_001
+    100008: doors2
+    100010: //RootNode
+    100012: metal1
+    100014: metal2
+    100016: rock1
+    100018: rock2
+    100020: rock3
+    100022: rock4
+    100024: roof1
+    100026: roof1_001
+    100028: stairs1
+    100030: wood1
+    100032: wood2
+    100034: wood2_001
+    100036: wood2_002
+    100038: wood5
+    100040: wood5_001
+    100042: wood3
+    400000: brick1
+    400002: brick1_002
+    400004: doors1
+    400006: doors1_001
+    400008: doors2
+    400010: //RootNode
+    400012: metal1
+    400014: metal2
+    400016: rock1
+    400018: rock2
+    400020: rock3
+    400022: rock4
+    400024: roof1
+    400026: roof1_001
+    400028: stairs1
+    400030: wood1
+    400032: wood2
+    400034: wood2_001
+    400036: wood2_002
+    400038: wood5
+    400040: wood5_001
+    400042: wood3
+    2300000: brick1
+    2300002: brick1_002
+    2300004: doors1
+    2300006: doors1_001
+    2300008: doors2
+    2300010: metal1
+    2300012: metal2
+    2300014: rock1
+    2300016: rock2
+    2300018: rock3
+    2300020: rock4
+    2300022: roof1
+    2300024: roof1_001
+    2300026: stairs1
+    2300028: wood1
+    2300030: wood2
+    2300032: wood2_001
+    2300034: wood2_002
+    2300036: wood5
+    2300038: wood5_001
+    2300040: wood3
+    3300000: brick1
+    3300002: brick1_002
+    3300004: doors1
+    3300006: doors1_001
+    3300008: doors2
+    3300010: metal1
+    3300012: metal2
+    3300014: rock1
+    3300016: rock2
+    3300018: rock3
+    3300020: rock4
+    3300022: roof1
+    3300024: roof1_001
+    3300026: stairs1
+    3300028: wood1
+    3300030: wood2
+    3300032: wood2_001
+    3300034: wood2_002
+    3300036: wood5
+    3300038: wood5_001
+    3300040: wood3
+    4300000: doors1_001
+    4300002: roof1_001
+    4300004: wood5_001
+    4300006: wood2_002
+    4300008: brick1_002
+    4300010: doors2
+    4300012: stairs1
+    4300014: rock2
+    4300016: metal2
+    4300018: roof1
+    4300020: wood1
+    4300022: rock1
+    4300024: wood2
+    4300026: brick1
+    4300028: metal1
+    4300030: rock4
+    4300032: wood2_001
+    4300034: wood5
+    4300036: rock3
+    4300038: doors1
+    4300040: wood3
+    6400000: brick1
+    6400002: doors1
+    6400004: doors1_001
+    6400006: doors2
+    6400008: metal1
+    6400010: metal2
+    6400012: rock1
+    6400014: rock2
+    6400016: rock3
+    6400018: rock4
+    6400020: roof1
+    6400022: stairs1
+    6400024: wood1
+    6400026: wood2
+    6400028: wood3
+    6400030: wood5
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

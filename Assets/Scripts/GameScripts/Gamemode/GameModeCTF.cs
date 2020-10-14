@@ -10,10 +10,4 @@ public class GameModeCTF : GameMode
 {
     List<Flag> flags;
 
-
-
-    /*private void Start()
-    {
-        base.Start();
-    }*/
 }

@@ -1,0 +1,152 @@
+fileFormatVersion: 2
+guid: 7682dd986da86b245ba77a39cac653c9
+timeCreated: 1447081715
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: brick1
+    100002: doors1
+    100004: doors1_001
+    100006: doors2
+    100008: //RootNode
+    100010: metal1
+    100012: metal2
+    100014: rock1
+    100016: rock2
+    100018: rock3
+    100020: rock4
+    100022: roof1
+    100024: stairs1
+    100026: wood1
+    100028: wood2
+    400000: brick1
+    400002: doors1
+    400004: doors1_001
+    400006: doors2
+    400008: //RootNode
+    400010: metal1
+    400012: metal2
+    400014: rock1
+    400016: rock2
+    400018: rock3
+    400020: rock4
+    400022: roof1
+    400024: stairs1
+    400026: wood1
+    400028: wood2
+    2300000: brick1
+    2300002: doors1
+    2300004: doors1_001
+    2300006: doors2
+    2300008: metal1
+    2300010: metal2
+    2300012: rock1
+    2300014: rock2
+    2300016: rock3
+    2300018: rock4
+    2300020: roof1
+    2300022: stairs1
+    2300024: wood1
+    2300026: wood2
+    3300000: brick1
+    3300002: doors1
+    3300004: doors1_001
+    3300006: doors2
+    3300008: metal1
+    3300010: metal2
+    3300012: rock1
+    3300014: rock2
+    3300016: rock3
+    3300018: rock4
+    3300020: roof1
+    3300022: stairs1
+    3300024: wood1
+    3300026: wood2
+    4300000: doors2
+    4300002: rock3
+    4300004: stairs1
+    4300006: rock2
+    4300008: metal2
+    4300010: roof1
+    4300012: wood1
+    4300014: rock1
+    4300016: wood2
+    4300018: brick1
+    4300020: doors1
+    4300022: metal1
+    4300024: doors1_001
+    4300026: rock4
+    6400000: brick1
+    6400002: doors1
+    6400004: doors2
+    6400006: metal1
+    6400008: metal2
+    6400010: rock1
+    6400012: rock2
+    6400014: rock3
+    6400016: rock4
+    6400018: roof1
+    6400020: stairs1
+    6400022: wood1
+    6400024: wood2
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -1,0 +1,177 @@
+fileFormatVersion: 2
+guid: fcef4d55552711f4889c0c624f32d6e7
+timeCreated: 1447767101
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: brick1
+    100002: brick1_001
+    100004: doors1
+    100006: doors1_001
+    100008: //RootNode
+    100010: rock1
+    100012: rock2
+    100014: roof2_001
+    100016: roof2_004
+    100018: stairs1
+    100020: wood2
+    100022: wood2_001
+    100024: wood3
+    100026: wood4
+    100028: roof2_000
+    100030: roof2_002
+    100032: roof2_003
+    100034: doors1_open
+    100036: roof2
+    400000: brick1
+    400002: brick1_001
+    400004: doors1
+    400006: doors1_001
+    400008: //RootNode
+    400010: rock1
+    400012: rock2
+    400014: roof2_001
+    400016: roof2_004
+    400018: stairs1
+    400020: wood2
+    400022: wood2_001
+    400024: wood3
+    400026: wood4
+    400028: roof2_000
+    400030: roof2_002
+    400032: roof2_003
+    400034: doors1_open
+    400036: roof2
+    2300000: brick1
+    2300002: brick1_001
+    2300004: doors1
+    2300006: doors1_001
+    2300008: rock1
+    2300010: rock2
+    2300012: roof2_001
+    2300014: roof2_004
+    2300016: stairs1
+    2300018: wood2
+    2300020: wood2_001
+    2300022: wood3
+    2300024: wood4
+    2300026: roof2_000
+    2300028: roof2_002
+    2300030: roof2_003
+    2300032: doors1_open
+    2300034: roof2
+    3300000: brick1
+    3300002: brick1_001
+    3300004: doors1
+    3300006: doors1_001
+    3300008: rock1
+    3300010: rock2
+    3300012: roof2_001
+    3300014: roof2_004
+    3300016: stairs1
+    3300018: wood2
+    3300020: wood2_001
+    3300022: wood3
+    3300024: wood4
+    3300026: roof2_000
+    3300028: roof2_002
+    3300030: roof2_003
+    3300032: doors1_open
+    3300034: roof2
+    4300000: wood2_001
+    4300002: roof2_004
+    4300004: roof2_001
+    4300006: brick1_001
+    4300008: doors1_001
+    4300010: wood2
+    4300012: wood4
+    4300014: rock2
+    4300016: rock1
+    4300018: brick1
+    4300020: doors1
+    4300022: wood3
+    4300024: stairs1
+    4300026: roof2_003
+    4300028: roof2_002
+    4300030: roof2_000
+    4300032: roof2
+    4300034: doors1_open
+    6400000: brick1
+    6400002: brick1_001
+    6400004: doors1
+    6400006: doors1_001
+    6400008: rock1
+    6400010: rock2
+    6400012: roof2_001
+    6400014: roof2_004
+    6400016: stairs1
+    6400018: wood2
+    6400020: wood2_001
+    6400022: wood3
+    6400024: wood4
+    6400026: roof2_000
+    6400028: roof2_002
+    6400030: roof2_003
+    6400032: doors1_open
+    6400034: roof2
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

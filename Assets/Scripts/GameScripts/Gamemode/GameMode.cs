@@ -9,28 +9,54 @@ using TMPro;
 
 public class GameMode : NetworkBehaviour
 {
-    //set up
+    
     public int teamAmmount = 2;
 
-    [SyncVar] public int ScoreTeam0 = 0;
-    [SyncVar] public int ScoreTeam1 = 0;
-    [SerializeField] public GameObject canvasPuntaje;
+    [SyncVar] 
+    public int ScoreTeam0 = 0;
+
+    [SyncVar] 
+    public int ScoreTeam1 = 0;
+
+    [SerializeField]
+    public GameObject canvasPuntaje;
+
     public int Meta = 500;
+
     public List<Transform> spawnPoints;
+
+    public static List<Player> _lstPlayers = new List<Player>();
+
+
+
 
     protected void Start()
     {
         Debug.Log("Setting up game");
     }
 
-    /*
-    [Client]
-    public void AddScore(int teamID, int score)
+
+    public static void LoadPlayer(Player p)
     {
-        Debug.Log("Soy Un Cliente");
-        CmdServerAddPoint(teamID, score);
+        _lstPlayers.Add(p);
     }
-    */
+
+    public static List<Player> GetPlayerList()
+    {
+        return _lstPlayers;
+    }
+    public static void UpdatePlayer(Player p)
+    {
+        int i = 0;
+        while(i < _lstPlayers.Count  && _lstPlayers[i] != p) 
+        {
+            i++;
+        }
+        if(_lstPlayers[i].jugador.name.Equals(p.jugador.name))
+        {
+            _lstPlayers[i] = p;
+        }
+    }
 
     [Command]
     public void CmdServerAddPoint(int teamID, int score)
@@ -70,6 +96,9 @@ public class GameMode : NetworkBehaviour
         player.GetComponent<Player>().SetDefaults();
 
     }
+
+
+
 }
 
 

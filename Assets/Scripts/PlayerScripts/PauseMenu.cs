@@ -25,6 +25,7 @@ namespace Assets.Scripts.PlayerScripts
         void Start()
         {
             sensConfig.value = PlayerPrefsManager.PlayerSensitivity;
+            Cursor.lockState = CursorLockMode.Locked;
         }
 
         [Client]
@@ -50,6 +51,8 @@ namespace Assets.Scripts.PlayerScripts
             pauseMenuUI.SetActive(false);
             GameIsPaused = false;
             Time.timeScale = 1f;
+            Cursor.lockState = CursorLockMode.Locked;
+
         }
 
         private void Pause()
@@ -57,6 +60,8 @@ namespace Assets.Scripts.PlayerScripts
             pauseMenuUI.SetActive(true);
             GameIsPaused = true;
             Time.timeScale = 0f;
+            Cursor.lockState = CursorLockMode.None;
+
         }
 
         public void ChangeSens()

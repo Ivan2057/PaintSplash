@@ -37,6 +37,7 @@ namespace Assets.Scripts.GameScripts
         {
             return ListJugadores;
         }
+
         public static int SetTeam()
         { int team = -1;
             if (ListJugadores.Count % 2 == 0)
@@ -91,6 +92,19 @@ namespace Assets.Scripts.GameScripts
                 }
             }
             return Team;
+        }
+
+        // Devuelve todos los jugadores conectados 
+        public static List<Player> GetAllPlayers()
+        {
+            List<Player> listaPlayers = new List<Player>();
+
+            
+
+
+
+
+            return listaPlayers;
         }
     }
 }

@@ -14,3 +14,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maps:
   - Assets/Scenes/Maps/MapCastillo.unity
+  - Assets/Scenes/Maps/Scene_Map_02.unity

@@ -1,0 +1,159 @@
+fileFormatVersion: 2
+guid: 9b9c4b62e168c614a8725ac56f3def6a
+timeCreated: 1446028501
+licenseType: Store
+ModelImporter:
+  serializedVersion: 18
+  fileIDToRecycleName:
+    100000: brick1
+    100002: brick2
+    100004: concrete2
+    100006: concrete3
+    100008: doors1
+    100010: //RootNode
+    100012: metal1
+    100014: metal2
+    100016: rock1
+    100018: rock2
+    100020: roof3
+    100022: roof4
+    100024: wood1
+    100026: wood2
+    100028: wood3
+    100030: wood4
+    400000: brick1
+    400002: brick2
+    400004: concrete2
+    400006: concrete3
+    400008: doors1
+    400010: //RootNode
+    400012: metal1
+    400014: metal2
+    400016: rock1
+    400018: rock2
+    400020: roof3
+    400022: roof4
+    400024: wood1
+    400026: wood2
+    400028: wood3
+    400030: wood4
+    2300000: brick1
+    2300002: brick2
+    2300004: concrete2
+    2300006: concrete3
+    2300008: doors1
+    2300010: metal1
+    2300012: metal2
+    2300014: rock1
+    2300016: rock2
+    2300018: roof3
+    2300020: roof4
+    2300022: wood1
+    2300024: wood2
+    2300026: wood3
+    2300028: wood4
+    3300000: brick1
+    3300002: brick2
+    3300004: concrete2
+    3300006: concrete3
+    3300008: doors1
+    3300010: metal1
+    3300012: metal2
+    3300014: rock1
+    3300016: rock2
+    3300018: roof3
+    3300020: roof4
+    3300022: wood1
+    3300024: wood2
+    3300026: wood3
+    3300028: wood4
+    4300000: brick2
+    4300002: metal1
+    4300004: metal2
+    4300006: wood3
+    4300008: concrete3
+    4300010: wood4
+    4300012: wood1
+    4300014: roof3
+    4300016: rock2
+    4300018: roof4
+    4300020: wood2
+    4300022: brick1
+    4300024: concrete2
+    4300026: doors1
+    4300028: rock1
+    6400000: brick1
+    6400002: brick2
+    6400004: concrete2
+    6400006: concrete3
+    6400008: doors1
+    6400010: metal1
+    6400012: metal2
+    6400014: rock1
+    6400016: rock2
+    6400018: roof3
+    6400020: roof4
+    6400022: wood1
+    6400024: wood2
+    6400026: wood3
+    6400028: wood4
+    7400000: Default Take
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 1
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    keepQuads: 0
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+    useFileScale: 1
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 1
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 

@@ -98,7 +98,8 @@ namespace Assets.Scripts.PlayerScripts
                 //FindObjectOfType<AudioManager>().PlayInPosition("Gun Shoot", currentWeapon.transform.position);
                 if (playershoter != null)
                 {                  
-                    CmdPlayerShot(_hit.collider.name, currentWeapon.damage);
+                    CmdPlayerShot(_hit.collider.name, currentWeapon.damage, this.gameObject);
+
                     
                 }
                 else
@@ -115,13 +116,13 @@ namespace Assets.Scripts.PlayerScripts
     }
 
         [Command]
-        void CmdPlayerShot(string _playerID, int _Damage)
+        void CmdPlayerShot(string _playerID, int _Damage, GameObject gameObject)
         {
 
             RpcBulletHoles();
             Debug.Log(_playerID + "has been shot");
             Player _player = NetworkRoomManagerExt.GetPlayer(_playerID);
-            _player.RpcTakeDamage(_Damage,_player.jugador);
+            _player.RpcTakeDamage(_Damage,_player.jugador, gameObject);
 
 
             //  _player.RpcTakeDamage(_Damage);

@@ -39,6 +39,19 @@ namespace Assets.Scripts.LobbyScripts
             }
         }
 
+        public string SelectById(int i = 0)
+        {
+            if (IsComplete) { return null; }
+
+            currentRound++;
+
+            if (remainingMaps.Count == 0) { ResetMaps(); }
+
+            string map = remainingMaps[i];
+
+            return map;
+        }
+
         private void ResetMaps() => remainingMaps = maps.ToList();
     }
 }

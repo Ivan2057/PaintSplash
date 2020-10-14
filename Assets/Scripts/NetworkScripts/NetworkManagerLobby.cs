@@ -19,7 +19,7 @@ namespace Assets.Scripts.NetworkScripts
 
         [Header("Maps")]
         [SerializeField] private int numberOfRounds = 1;
-        [SerializeField] private MapSet mapSet = null;
+        [SerializeField] public  MapSet mapSet = null;
 
         [Header("Room")]
         [SerializeField] private NetworkRoomPlayerLobby roomPlayerPrefab = null;
@@ -46,6 +46,9 @@ namespace Assets.Scripts.NetworkScripts
 
         private int miTeam;
 
+
+
+ 
 
 
         public override void OnStartClient()
@@ -152,15 +155,15 @@ namespace Assets.Scripts.NetworkScripts
 
 
 
-        public void StartGame()
+        public void StartGame(int idMapa = 0)
         {
             if (menuScene.Contains(SceneManager.GetActiveScene().name))
             {
                 if (!IsReadyToStart()) { return; }
 
-                mapHandler = new MapHandler(mapSet, numberOfRounds);
+                mapHandler = new MapHandler(mapSet, numberOfRounds); ;
 
-                ServerChangeScene(mapHandler.NextMap);
+                ServerChangeScene(mapHandler.SelectById(idMapa));
 
 
               

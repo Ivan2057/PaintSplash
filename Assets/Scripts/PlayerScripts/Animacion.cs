@@ -7,6 +7,8 @@ namespace Assets.Scripts.PlayerScripts
     public class Animacion : NetworkBehaviour
     {
         Animator anim;
+        [SerializeField]
+        private GameObject jugador;
         public bool puedoSaltar = false;
         bool cayendo = false;
         Collider pies;
@@ -17,7 +19,7 @@ namespace Assets.Scripts.PlayerScripts
         {
 
 
-            if (PlayerController.localPlayer)
+            if (jugador.GetComponent<NetworkIdentity>().hasAuthority)
             {
                 anim = GetComponent<Animator>();
             }
@@ -27,10 +29,20 @@ namespace Assets.Scripts.PlayerScripts
      
         void Update()
         {
-            if (PlayerController.localPlayer)
+            if (jugador.GetComponent<NetworkIdentity>().hasAuthority)
             {
                 //if (PlayerController.isGrounded)
                 //{
+                if (jugador.GetComponent<Player>().isDead)
+                {
+                    anim.SetBool("Correr_w", false);
+                    anim.SetBool("Correr_s", false);
+                    anim.SetBool("Saltar", false);
+                    anim.SetBool("Morir", true);
+
+                }
+                else
+                {
                     if (Input.GetKeyDown(KeyCode.W))
                     {
                         anim.SetBool("Correr_w", true);
@@ -60,12 +72,12 @@ namespace Assets.Scripts.PlayerScripts
                     {
                         anim.SetBool("Correr_s", false);
                     }
-                   /* if (Input.GetKeyDown(KeyCode.Space))
-                    {
-                        anim.SetBool("Saltar", true);
-                        anim.SetBool("Correr_w", false);
-                        anim.SetBool("Correr_s", false);
-                    }*/
+                    /* if (Input.GetKeyDown(KeyCode.Space))
+                     {
+                         anim.SetBool("Saltar", true);
+                         anim.SetBool("Correr_w", false);
+                         anim.SetBool("Correr_s", false);
+                     }*/
 
                     if (cayendo)
                     {
@@ -86,14 +98,16 @@ namespace Assets.Scripts.PlayerScripts
                         anim.SetBool("Agacharse", false);
                     }
 
-                /*}
-                else   //si no esta en el piso
-                {
-                    anim.SetBool("Saltar", false);
-                    anim.SetBool("Caer", true);
-                    cayendo = true;
+                    /*}
+                    else   //si no esta en el piso
+                    {
+                        anim.SetBool("Saltar", false);
+                        anim.SetBool("Caer", true);
+                        cayendo = true;
+                    }
+                    */
+                    anim.SetBool("Morir", false);
                 }
-                */
             }
         }
     }

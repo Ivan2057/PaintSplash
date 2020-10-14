@@ -2,7 +2,11 @@
 using Mirror;
 using Steamworks;
 using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
 using TMPro;
+using UnityEditor;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -18,6 +22,7 @@ namespace Assets.Scripts.NetworkScripts
         [SerializeField] private TMP_Text[] playerReadyTexts = new TMP_Text[4];
         [SerializeField] private RawImage[] playerRawImage = new RawImage[4];
         [SerializeField] private Button startGameButton = null;
+        [SerializeField] private Dropdown dropdownMaps = null;
 
         [SyncVar(hook = nameof(HandleDisplayNameChanged))]
         public string DisplayName = "Loading...";
@@ -44,8 +49,6 @@ namespace Assets.Scripts.NetworkScripts
         }
 
 
-
-
         private NetworkManagerLobby room;
         private NetworkManagerLobby Room
         {
@@ -57,6 +60,19 @@ namespace Assets.Scripts.NetworkScripts
         }
 
 
+        public void Start()
+        {
+            List<string> roomList = Room.mapSet.Maps.ToList();
+            dropdownMaps.ClearOptions();
+
+            foreach (string itemMap in roomList)
+            {
+                String mapName = Path.GetFileNameWithoutExtension(itemMap);
+                List<string> m_DropOptions = new List<string> { mapName };
+                dropdownMaps.AddOptions(m_DropOptions);
+            }
+
+        }
         public override void OnStartAuthority()
         {
             CmdSetSteamId(SteamUser.GetSteamID().ToString());
@@ -160,10 +176,9 @@ namespace Assets.Scripts.NetworkScripts
 
         [Command]
         public void CmdStartGame()
-        {
+        {      
             if (!String.Equals(Room.RoomPlayers[0].connectionToClient, connectionToClient)) { return; }
-
-            Room.StartGame();
+            Room.StartGame(dropdownMaps.value);            
         }
 
         public Texture2D GetImage(string _steamId)
