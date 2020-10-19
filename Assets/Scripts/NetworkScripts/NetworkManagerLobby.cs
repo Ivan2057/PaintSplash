@@ -175,7 +175,7 @@ namespace Assets.Scripts.NetworkScripts
         public override void ServerChangeScene(string newSceneName)
         {
             // From menu to game
-            if (menuScene.Contains(SceneManager.GetActiveScene().name) && newSceneName.Contains("MapCastillo"))
+            if (menuScene.Contains(SceneManager.GetActiveScene().name) && newSceneName != null)
             {
                 for (int i = RoomPlayers.Count - 1; i >= 0; i--)
                 {
@@ -196,7 +196,7 @@ namespace Assets.Scripts.NetworkScripts
         }
         public override void OnServerSceneChanged(string sceneName)
         {
-           if (sceneName.Contains("MapCastillo"))
+           if (sceneName != null)
            {
                 GameObject playerSpawnSystemInstance = Instantiate(playerSpawnSystem);
                 NetworkServer.Spawn(playerSpawnSystemInstance);
