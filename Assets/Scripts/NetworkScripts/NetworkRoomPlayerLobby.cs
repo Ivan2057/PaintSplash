@@ -45,6 +45,7 @@ namespace Assets.Scripts.NetworkScripts
                 RoomId.text = RoomFirebaseSteam.GetRoomId();
                 _roomId = RoomId.text;
                 startGameButton.gameObject.SetActive(value);
+                dropdownMaps.gameObject.SetActive(value);
             }
         }
 
