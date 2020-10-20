@@ -41,8 +41,6 @@ namespace Assets.Scripts.LobbyScripts
 
         public string SelectById(int i = 0)
         {
-            if (IsComplete) { return null; }
-
             currentRound++;
 
             if (remainingMaps.Count == 0) { ResetMaps(); }
