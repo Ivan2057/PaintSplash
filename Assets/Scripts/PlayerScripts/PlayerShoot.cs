@@ -138,14 +138,20 @@ namespace Assets.Scripts.PlayerScripts
             {
                 GameObject t_newHole = Instantiate(bulletHolePrefab, _hitDisparo.point + (_hitDisparo.normal * 0.1f), Quaternion.LookRotation(_hitDisparo.normal), NetworkIdentity.spawned[_hitDisparo.collider.GetComponent<NetworkIdentity>().netId].transform) as GameObject;
                 t_newHole.transform.LookAt(_hitDisparo.point + _hitDisparo.normal);
+                NetworkServer.Spawn(t_newHole);
                 Destroy(t_newHole, 2f);
+                
             }
             else
             {
                 GameObject t_newHole = Instantiate(bulletHolePrefab, _hitDisparo.point + _hitDisparo.normal * 0.1f, Quaternion.LookRotation(_hitDisparo.normal)) as GameObject;
                 t_newHole.transform.LookAt(_hitDisparo.point + _hitDisparo.normal);
+                NetworkServer.Spawn(t_newHole);
                 Destroy(t_newHole, 5f);
+                
+
             }
+
         }
         [Command]
         void CmdBulletHole(GameObject playerDisparo)
