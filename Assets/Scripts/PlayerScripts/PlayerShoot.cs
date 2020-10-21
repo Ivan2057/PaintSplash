@@ -29,7 +29,7 @@ namespace Assets.Scripts.PlayerScripts
         private WeaponManager weaponManager;
         PlayerShoot playershoter;
         RaycastHit _hit;
-        RaycastHit _hit2;
+        
 
 
 
@@ -98,14 +98,14 @@ namespace Assets.Scripts.PlayerScripts
                 //FindObjectOfType<AudioManager>().PlayInPosition("Gun Shoot", currentWeapon.transform.position);
                 if (playershoter != null)
                 {                  
-                    CmdPlayerShot(_hit.collider.name, currentWeapon.damage, this.gameObject);
+                    CmdPlayerShot(_hit.collider.name, currentWeapon.damage, this.gameObject,true);
 
                     
                 }
                 else
                 {
                     Debug.Log("piso piso");
-                    CmdBulletHole();
+                    CmdBulletHole(this.gameObject);
                 }
             }
 
@@ -116,10 +116,10 @@ namespace Assets.Scripts.PlayerScripts
     }
 
         [Command]
-        void CmdPlayerShot(string _playerID, int _Damage, GameObject gameObject)
+        void CmdPlayerShot(string _playerID, int _Damage, GameObject gameObject, bool leDio)
         {
 
-            RpcBulletHoles();
+            RpcBulletHoles(gameObject, leDio);
             Debug.Log(_playerID + "has been shot");
             Player _player = NetworkRoomManagerExt.GetPlayer(_playerID);
             _player.RpcTakeDamage(_Damage,_player.jugador, gameObject);
@@ -129,25 +129,28 @@ namespace Assets.Scripts.PlayerScripts
         }
 
         [ClientRpc]
-        void RpcBulletHoles()
+        void RpcBulletHoles(GameObject ObjectplayerDisparo, bool LeDio)
         {
-            if(playershoter != null)
+            PlayerShoot playerDisparo = gameObject.GetComponent<PlayerShoot>();
+            RaycastHit _hitDisparo;
+            Physics.Raycast(playerDisparo.cam.transform.position, playerDisparo.cam.transform.forward, out _hitDisparo, playerDisparo.currentWeapon.range, mask);
+            if (LeDio)
             {
-                GameObject t_newHole = Instantiate(bulletHolePrefab, _hit.point + (_hit.normal * 0.1f), Quaternion.LookRotation(_hit.normal), NetworkIdentity.spawned[_hit.collider.GetComponent<NetworkIdentity>().netId].transform) as GameObject;
-                t_newHole.transform.LookAt(_hit.point + _hit.normal);
+                GameObject t_newHole = Instantiate(bulletHolePrefab, _hitDisparo.point + (_hitDisparo.normal * 0.1f), Quaternion.LookRotation(_hitDisparo.normal), NetworkIdentity.spawned[_hitDisparo.collider.GetComponent<NetworkIdentity>().netId].transform) as GameObject;
+                t_newHole.transform.LookAt(_hitDisparo.point + _hitDisparo.normal);
                 Destroy(t_newHole, 2f);
             }
             else
             {
-                GameObject t_newHole = Instantiate(bulletHolePrefab, _hit.point + _hit.normal * 0.1f, Quaternion.LookRotation(_hit.normal)) as GameObject;
-                t_newHole.transform.LookAt(_hit.point + _hit.normal);
+                GameObject t_newHole = Instantiate(bulletHolePrefab, _hitDisparo.point + _hitDisparo.normal * 0.1f, Quaternion.LookRotation(_hitDisparo.normal)) as GameObject;
+                t_newHole.transform.LookAt(_hitDisparo.point + _hitDisparo.normal);
                 Destroy(t_newHole, 5f);
             }
         }
         [Command]
-        void CmdBulletHole()
+        void CmdBulletHole(GameObject playerDisparo)
             {
-            RpcBulletHoles();
+            RpcBulletHoles(playerDisparo,false);
         }
     }
     
