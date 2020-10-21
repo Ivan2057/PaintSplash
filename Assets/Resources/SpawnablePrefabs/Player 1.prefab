@@ -7,7 +7,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 105336352721636404}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc53050a8a6a0004ab5014edd0da0772, type: 3}
   m_Name: 
@@ -2899,7 +2899,7 @@ MonoBehaviour:
   cameraTransform: {fileID: 6270983630597849325}
   maxPitch: 85
   minPitch: -85
-  pecho: {fileID: 9095680359901652444}
+  pecho: {fileID: 3488760989454825675}
   brazoIzq: {fileID: 0}
   brazoDer: {fileID: 0}
 --- !u!114 &8085252351883467877
@@ -4008,9 +4008,9 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d81dcd5da92ce0746b73ce9b340d9601, type: 3}
---- !u!4 &9095680359901652444 stripped
+--- !u!4 &3488760989454825675 stripped
 Transform:
-  m_CorrespondingSourceObject: {fileID: -444521105353760620, guid: d81dcd5da92ce0746b73ce9b340d9601,
+  m_CorrespondingSourceObject: {fileID: 4000453017570065795, guid: d81dcd5da92ce0746b73ce9b340d9601,
     type: 3}
   m_PrefabInstance: {fileID: 571648672125076808}
   m_PrefabAsset: {fileID: 0}
@@ -4994,6 +4994,11 @@ PrefabInstance:
       propertyPath: m_Controller
       value: 
       objectReference: {fileID: 9100000, guid: 0d4c73a863163ef48ba026af4dffe0ca, type: 2}
+    - target: {fileID: -6057140222963153312, guid: 645ed5555f075524083df553cea19187,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: -5747877272438951720, guid: 645ed5555f075524083df553cea19187,
         type: 3}
       propertyPath: m_LocalPosition.x

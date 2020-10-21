@@ -57,6 +57,8 @@ namespace Assets.Scripts.PlayerScripts
 
         private void LateUpdate()
         {
+            if (!this.gameObject.GetComponent<NetworkIdentity>().hasAuthority) return;
+
             CameraRotate();
             PlayerPrefabRotate();
         }
