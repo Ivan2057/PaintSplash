@@ -131,7 +131,7 @@ namespace Assets.Scripts.PlayerScripts
         [ClientRpc]
         void RpcBulletHoles(GameObject ObjectplayerDisparo, bool LeDio)
         {
-            PlayerShoot playerDisparo = gameObject.GetComponent<PlayerShoot>();
+            PlayerShoot playerDisparo = ObjectplayerDisparo.GetComponent<PlayerShoot>();
             RaycastHit _hitDisparo;
             Physics.Raycast(playerDisparo.cam.transform.position, playerDisparo.cam.transform.forward, out _hitDisparo, playerDisparo.currentWeapon.range, mask);
             if (LeDio)
