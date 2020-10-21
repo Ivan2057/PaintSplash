@@ -29,7 +29,7 @@ namespace Assets.Scripts.PlayerScripts
         private WeaponManager weaponManager;
         PlayerShoot playershoter;
         RaycastHit _hit;
-        
+
 
 
 
@@ -46,7 +46,7 @@ namespace Assets.Scripts.PlayerScripts
                 go.SetActive(false);
             }
 
-           
+
             weaponManager = GetComponent<WeaponManager>();
         }
 
@@ -55,13 +55,13 @@ namespace Assets.Scripts.PlayerScripts
             if (PlayerController.localPlayer)
             {
                 RaycastHit mira;
-            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out mira, currentWeapon.range))
-            {
-                tag = mira.collider.name;
-            }
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out mira, currentWeapon.range))
+                {
+                    tag = mira.collider.name;
+                }
 
                 //currentWeapon = weaponManager.GetCurrentWeapon();
-            
+
                 if (currentWeapon.fireRate <= 0f)
                 {
                     if (Input.GetButtonDown("Fire1"))
@@ -89,18 +89,20 @@ namespace Assets.Scripts.PlayerScripts
         [Client]
         void Shoot()
         {
+            if (!this.gameObject.GetComponent<NetworkIdentity>().hasAuthority) return;
+
             Debug.Log("SHOOT");
-            
-            
+
+
             if (Physics.Raycast(cam.transform.position, cam.transform.forward, out _hit, currentWeapon.range, mask))
             {
                 playershoter = _hit.collider.GetComponent<PlayerShoot>();
                 //FindObjectOfType<AudioManager>().PlayInPosition("Gun Shoot", currentWeapon.transform.position);
                 if (playershoter != null)
-                {                  
-                    CmdPlayerShot(_hit.collider.name, currentWeapon.damage, this.gameObject,true);
+                {
+                    CmdPlayerShot(_hit.collider.name, currentWeapon.damage, this.gameObject, true);
 
-                    
+
                 }
                 else
                 {
@@ -110,10 +112,10 @@ namespace Assets.Scripts.PlayerScripts
             }
 
 
-           
+
             Transform t_spawn = transform.Find("Camera");
 
-    }
+        }
 
         [Command]
         void CmdPlayerShot(string _playerID, int _Damage, GameObject gameObject, bool leDio)
@@ -122,7 +124,7 @@ namespace Assets.Scripts.PlayerScripts
             RpcBulletHoles(gameObject, leDio);
             Debug.Log(_playerID + "has been shot");
             Player _player = NetworkRoomManagerExt.GetPlayer(_playerID);
-            _player.RpcTakeDamage(_Damage,_player.jugador, gameObject);
+            _player.RpcTakeDamage(_Damage, _player.jugador, gameObject);
 
 
             //  _player.RpcTakeDamage(_Damage);
@@ -131,6 +133,7 @@ namespace Assets.Scripts.PlayerScripts
         [ClientRpc]
         void RpcBulletHoles(GameObject ObjectplayerDisparo, bool LeDio)
         {
+
             PlayerShoot playerDisparo = ObjectplayerDisparo.GetComponent<PlayerShoot>();
             RaycastHit _hitDisparo;
             Physics.Raycast(playerDisparo.cam.transform.position, playerDisparo.cam.transform.forward, out _hitDisparo, playerDisparo.currentWeapon.range, mask);
@@ -140,7 +143,7 @@ namespace Assets.Scripts.PlayerScripts
                 t_newHole.transform.LookAt(_hitDisparo.point + _hitDisparo.normal);
                 NetworkServer.Spawn(t_newHole);
                 Destroy(t_newHole, 2f);
-                
+
             }
             else
             {
@@ -148,17 +151,18 @@ namespace Assets.Scripts.PlayerScripts
                 t_newHole.transform.LookAt(_hitDisparo.point + _hitDisparo.normal);
                 NetworkServer.Spawn(t_newHole);
                 Destroy(t_newHole, 5f);
-                
+
 
             }
 
         }
+
         [Command]
         void CmdBulletHole(GameObject playerDisparo)
-            {
-            RpcBulletHoles(playerDisparo,false);
+        {
+            RpcBulletHoles(playerDisparo, false);
         }
     }
-    
+
 
 }

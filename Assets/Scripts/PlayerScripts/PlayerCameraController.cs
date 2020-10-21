@@ -60,7 +60,6 @@ namespace Assets.Scripts.PlayerScripts
             if (!this.gameObject.GetComponent<NetworkIdentity>().hasAuthority) return;
 
             CameraRotate();
-            PlayerPrefabRotate();
         }
 
         private void Look(Vector2 lookAxis)
@@ -81,7 +80,7 @@ namespace Assets.Scripts.PlayerScripts
         }
 
         [Command]
-        void CmdProvideRotationsToServer(Quaternion playerRot, GameObject goJugador)
+        void CmdCamRotation(Quaternion playerRot, GameObject goJugador)
         {
             RpcCameraRotate(playerRot, goJugador);
         }
@@ -90,17 +89,18 @@ namespace Assets.Scripts.PlayerScripts
         {
             //create the local rotation value for the camera and set it
             Quaternion rot = Quaternion.Euler(GetPitch(), 0, 0);
-            CmdProvideRotationsToServer(rot, this.gameObject);
+            CmdCamRotation(rot, this.gameObject);
         }
+
         [ClientRpc]
         private void RpcCameraRotate(Quaternion rot, GameObject goJugador)
         {
             goJugador.GetComponent<PlayerCameraController>().cameraTransform.localRotation = rot;
+            goJugador.GetComponent<PlayerCameraController>().PlayerPrefabRotate(rot, goJugador);
         }
 
-        private void PlayerPrefabRotate()
+        private void PlayerPrefabRotate(Quaternion rot, GameObject goJugador)
         {
-            Quaternion rot = Quaternion.Euler(GetPitch(), 0, 0);
             pecho.localRotation = rot;
         }
     }

@@ -54,6 +54,9 @@ namespace Assets.Scripts.PlayerScripts
         [SerializeField] public float forwardDropOffset;
         [SerializeField] public float upDropOffset;
 
+        [SerializeField] private Canvas canvasMenu;
+        [SerializeField] private Canvas canvasVida;
+
         private GameModeCTF gameModeCTF;
 
         public int ScoreTeam0 = 0;
@@ -76,7 +79,6 @@ namespace Assets.Scripts.PlayerScripts
         public int muertes = 0;
         public int kills = 0;
         public int points = 0;
-        #endregion setup
 
         #region setup
         private void Start()
@@ -94,6 +96,11 @@ namespace Assets.Scripts.PlayerScripts
                     spawnPoints = PlayerSpawnSystem.spawnPoints1;
                 }
                 canvasFin = GetComponent<EndGame>();
+            }
+            else
+            {
+                canvasVida.enabled = false;
+                canvasMenu.enabled = false;
             }
             GetGameObjectsFromMap();
             Setup();
