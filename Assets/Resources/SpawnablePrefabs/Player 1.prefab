@@ -2899,6 +2899,9 @@ MonoBehaviour:
   cameraTransform: {fileID: 6270983630597849325}
   maxPitch: 85
   minPitch: -85
+  pecho: {fileID: 9095680359901652444}
+  brazoIzq: {fileID: 0}
+  brazoDer: {fileID: 0}
 --- !u!114 &8085252351883467877
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -4005,21 +4008,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d81dcd5da92ce0746b73ce9b340d9601, type: 3}
+--- !u!4 &9095680359901652444 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: -444521105353760620, guid: d81dcd5da92ce0746b73ce9b340d9601,
+    type: 3}
+  m_PrefabInstance: {fileID: 571648672125076808}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &3983680249479315949 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: -5717874547086949211, guid: d81dcd5da92ce0746b73ce9b340d9601,
     type: 3}
   m_PrefabInstance: {fileID: 571648672125076808}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &8579181020541362013 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 8133985671257971221, guid: d81dcd5da92ce0746b73ce9b340d9601,
-    type: 3}
-  m_PrefabInstance: {fileID: 571648672125076808}
-  m_PrefabAsset: {fileID: 0}
 --- !u!95 &3179066895137227560 stripped
 Animator:
   m_CorrespondingSourceObject: {fileID: -6057140222963153312, guid: d81dcd5da92ce0746b73ce9b340d9601,
+    type: 3}
+  m_PrefabInstance: {fileID: 571648672125076808}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &8579181020541362013 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8133985671257971221, guid: d81dcd5da92ce0746b73ce9b340d9601,
     type: 3}
   m_PrefabInstance: {fileID: 571648672125076808}
   m_PrefabAsset: {fileID: 0}

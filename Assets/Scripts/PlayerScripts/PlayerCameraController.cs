@@ -13,12 +13,19 @@ namespace Assets.Scripts.PlayerScripts
         [SerializeField] private Transform playerTransform = null;
         [SerializeField] private CinemachineVirtualCamera virtualCamera = null;
         [SerializeField] public float mouseSensitivity = 1f;
-       [SerializeField] Transform cameraTransform;
+        [SerializeField] Transform cameraTransform;
         float pitch = 0f;
         [Range(1f, 90f)]
         public float maxPitch = 85f;
         [Range(-1f, -90f)]
         public float minPitch = -85f;
+
+        [Header("GameObject - Player")]
+        [SerializeField] private Transform pecho = null;
+        [SerializeField] private Transform brazoIzq = null;
+        [SerializeField] private Transform brazoDer = null;
+
+
 
         private Controls controls;
         private Controls Controls
@@ -48,7 +55,18 @@ namespace Assets.Scripts.PlayerScripts
         [ClientCallback]
         private void OnDisable() => Controls.Disable();
 
+        private void LateUpdate()
+        {
+            CameraRotate();
+            PlayerPrefabRotate();
+        }
+
         private void Look(Vector2 lookAxis)
+        {
+            
+        }
+
+        private float GetPitch()
         {
             //get the mouse inpuit axis values
             float xInput = Input.GetAxis("Mouse X") * mouseSensitivity;
@@ -57,10 +75,23 @@ namespace Assets.Scripts.PlayerScripts
             transform.Rotate(0, xInput, 0);
             //now add on y input to pitch, and clamp it
             pitch -= yInput;
-            pitch = Mathf.Clamp(pitch, minPitch, maxPitch);
+            return Mathf.Clamp(pitch, minPitch, maxPitch);
+        }
+
+
+        private void CameraRotate()
+        {
+           
             //create the local rotation value for the camera and set it
-            Quaternion rot = Quaternion.Euler(pitch, 0, 0);
+            Quaternion rot = Quaternion.Euler(GetPitch(), 0, 0);
             cameraTransform.localRotation = rot;
+        }
+
+        private void PlayerPrefabRotate()
+        {
+            Quaternion rot = Quaternion.Euler(GetPitch(), 0, 0);
+
+            pecho.localRotation = rot;
         }
     }
 }
