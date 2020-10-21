@@ -80,19 +80,27 @@ namespace Assets.Scripts.PlayerScripts
             return Mathf.Clamp(pitch, minPitch, maxPitch);
         }
 
-
+        [Command]
+        void CmdProvideRotationsToServer(Quaternion playerRot, GameObject goJugador)
+        {
+            RpcCameraRotate(playerRot, goJugador);
+        }
+        [Client]
         private void CameraRotate()
         {
-           
             //create the local rotation value for the camera and set it
             Quaternion rot = Quaternion.Euler(GetPitch(), 0, 0);
-            cameraTransform.localRotation = rot;
+            CmdProvideRotationsToServer(rot, this.gameObject);
+        }
+        [ClientRpc]
+        private void RpcCameraRotate(Quaternion rot, GameObject goJugador)
+        {
+            goJugador.GetComponent<PlayerCameraController>().cameraTransform.localRotation = rot;
         }
 
         private void PlayerPrefabRotate()
         {
             Quaternion rot = Quaternion.Euler(GetPitch(), 0, 0);
-
             pecho.localRotation = rot;
         }
     }
