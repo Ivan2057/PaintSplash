@@ -4015,6 +4015,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: lowPoly_Personaje_V1
       objectReference: {fileID: 0}
+    - target: {fileID: -927199367670048503, guid: d81dcd5da92ce0746b73ce9b340d9601,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: d81dcd5da92ce0746b73ce9b340d9601, type: 3}
 --- !u!1 &8416957662458649665 stripped
@@ -4488,6 +4493,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: CanvasFin
+      objectReference: {fileID: 0}
+    - target: {fileID: 5148993496925962278, guid: 2e9f164dee431f24da98b38be926c72e,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6342055800459390089, guid: 2e9f164dee431f24da98b38be926c72e,
         type: 3}
