@@ -376,21 +376,16 @@ namespace Assets.Scripts.PlayerScripts
 
         [Command]
         public void CmdDropWeapon(int weaponID, GameObject jugadorPeticion)
-        {
-            Player miPlayerPeticion = jugadorPeticion.GetComponent<Player>();
-
-            if (miPlayerPeticion.weapons[weaponID].isWeaponDropable)
-            {
+        {  
                 RpcDropWeapon(weaponID, jugadorPeticion);
-            }
+            
         }
         [ClientRpc]
 
         public void RpcDropWeapon(int weaponID, GameObject jugadorPeticion)
         {
-
             Player miPlayerPeticion = jugadorPeticion.GetComponent<Player>();
-
+            if (!miPlayerPeticion.weapons[weaponID].isWeaponDropable) return;
             Vector3 forward = miPlayerPeticion.transform.forward; ;
             forward.y = 0;
             forward *= miPlayerPeticion.forwardDropOffset;
