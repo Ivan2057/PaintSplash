@@ -78,6 +78,8 @@ namespace Assets.Scripts.PlayerScripts
         public int points = 0;
         #endregion setup
 
+        #endregion Declarations
+
         #region setup
         private void Start()
         {
