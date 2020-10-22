@@ -80,8 +80,6 @@ namespace Assets.Scripts.PlayerScripts
         public int kills = 0;
         public int points = 0;
 
-        #endregion Declarations
-
         #region setup
         private void Start()
         {
