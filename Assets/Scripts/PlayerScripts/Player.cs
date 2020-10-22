@@ -76,8 +76,6 @@ namespace Assets.Scripts.PlayerScripts
         public int muertes = 0;
         public int kills = 0;
         public int points = 0;
-        #endregion setup
-
         #endregion Declarations
 
         #region setup

@@ -98,6 +98,8 @@ namespace Assets.Scripts.PlayerScripts
             goJugador.GetComponent<PlayerCameraController>().cameraTransform.localRotation = rot;
         }
 
+
+
         private void PlayerPrefabRotate()
         {
             Quaternion rot = Quaternion.Euler(GetPitch(), 0, 0);
