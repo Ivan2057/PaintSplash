@@ -19,6 +19,7 @@ namespace Assets.Scripts.PlayerScripts
         public float maxPitch = 85f;
         [Range(-1f, -90f)]
         public float minPitch = -85f;
+        public bool vivo;
 
         [Header("GameObject - Player")]
         [SerializeField] private Transform pecho = null;
@@ -41,7 +42,7 @@ namespace Assets.Scripts.PlayerScripts
 
         public override void OnStartAuthority()
         {
-            transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
+            //transposer = virtualCamera.GetCinemachineComponent<CinemachineTransposer>();
 
             virtualCamera.gameObject.SetActive(true);
 
@@ -55,12 +56,18 @@ namespace Assets.Scripts.PlayerScripts
         [ClientCallback]
         private void OnDisable() => Controls.Disable();
 
-        private void LateUpdate()
+        private void Update()
         {
             if (!this.gameObject.GetComponent<NetworkIdentity>().hasAuthority) return;
+            if (vivo)
+            {
+                CameraRotate();
+                PlayerPrefabRotate();
+            }
+            else
+            {
 
-            CameraRotate();
-            PlayerPrefabRotate();
+            }
         }
 
         private void Look(Vector2 lookAxis)

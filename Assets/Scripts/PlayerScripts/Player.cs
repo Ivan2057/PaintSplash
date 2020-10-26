@@ -20,7 +20,11 @@ namespace Assets.Scripts.PlayerScripts
         public static NetworkConnection userConnection;
         private Rigidbody rigidBody;
         private int BanderaTeam;
-
+        [SerializeField] Canvas vidacanvas;
+        [SerializeField] GameObject menuPanel;
+        [SerializeField] Canvas menucanvas;
+        [SerializeField] GameObject muertePanel;
+        [SerializeField] Canvas muerteCanvas;
         [SerializeField] Camera miCamera;
         public static List<Transform> spawnPoints = new List<Transform>();
 
@@ -37,7 +41,7 @@ namespace Assets.Scripts.PlayerScripts
         private int maxHealth = 100;
 
         [SyncVar(hook = nameof(ShowVidaCanvas))]
-        private int currentHealth;
+        public int currentHealth;
 
         public static int vida;
 
@@ -45,7 +49,7 @@ namespace Assets.Scripts.PlayerScripts
         private Behaviour[] disableOnDeath;
         private bool[] wasEnabled;
 
-        [SerializeField] public Text hp;
+        [SerializeField] public TextMeshProUGUI hp;
 
         //weapons
         [SerializeField] public List<Weapon> weapons;
@@ -83,6 +87,7 @@ namespace Assets.Scripts.PlayerScripts
         {
             if (GetComponent<NetworkIdentity>().hasAuthority)
             {
+                vidacanvas.enabled = true;
                 gameModeCTF = FindObjectOfType<GameModeCTF>();
                 //CmdSetTeam(jugador, userConnection.connectionId);
                 if (Team == 0)
@@ -91,11 +96,20 @@ namespace Assets.Scripts.PlayerScripts
                 }
                 else
                 {
+                    
                     spawnPoints = PlayerSpawnSystem.spawnPoints1;
                 }
                 canvasFin = GetComponent<EndGame>();
             }
-            GetGameObjectsFromMap();
+            else
+            {
+                vidacanvas.targetDisplay = 2;
+                menucanvas.targetDisplay = 2;
+                muerteCanvas.targetDisplay = 2;
+                vidacanvas.enabled = false;
+            }
+            vidacanvas.sortingOrder = 1;
+            vidacanvas.sortingOrder = 0;
             Setup();
             GameMode.LoadPlayer(this);
         }
@@ -120,6 +134,7 @@ namespace Assets.Scripts.PlayerScripts
         public void SetDefaults()
         {
             isDead = false;
+            this.gameObject.GetComponent<PlayerCameraController>().vivo = true;
             currentHealth = maxHealth;
             //jugador.AddComponent<Material>
 
@@ -182,10 +197,12 @@ namespace Assets.Scripts.PlayerScripts
         [Client]
         private void Update()
         {
+            this.hp.text = this.currentHealth.ToString();
             if (Input.GetKeyDown(KeyCode.X))
             {
                 DropWeapon(currentWeapon);
             }
+
 
         }
 
@@ -267,14 +284,18 @@ namespace Assets.Scripts.PlayerScripts
         }
 
         [Client]
-        private void ChangeLife(int _ammount)
+        public void ChangeLife(int _ammount)
         {
             currentHealth = currentHealth - _ammount;
+            hp.text = currentHealth.ToString();
         }
 
         public void Die()
         {
             isDead = true;
+            this.gameObject.GetComponent<PlayerCameraController>().vivo = false;
+            vidacanvas.enabled = false;
+            muertePanel.SetActive(true);
             for (int i = 0; i < disableOnDeath.Length; i++)
             {
                 disableOnDeath[i].enabled = false;
@@ -299,6 +320,9 @@ namespace Assets.Scripts.PlayerScripts
         private IEnumerator Respawn()
         {
             yield return new WaitForSeconds(3f);
+            
+            muertePanel.SetActive(false);
+            vidacanvas.enabled = true;
 
             int i = UnityEngine.Random.Range(0, spawnPoints.Count);
             transform.position = spawnPoints[i].position;

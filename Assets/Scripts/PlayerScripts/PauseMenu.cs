@@ -31,7 +31,7 @@ namespace Assets.Scripts.PlayerScripts
         [Client]
         void Update()
         {
-            if (!PlayerController.localPlayer) return;
+            if (!gameObject.GetComponent<NetworkIdentity>().hasAuthority) return;
 
             if (Input.GetKeyDown(KeyCode.Escape))
             {
@@ -50,7 +50,6 @@ namespace Assets.Scripts.PlayerScripts
         {
             pauseMenuUI.SetActive(false);
             GameIsPaused = false;
-            Time.timeScale = 1f;
             Cursor.lockState = CursorLockMode.Locked;
 
         }
@@ -59,7 +58,6 @@ namespace Assets.Scripts.PlayerScripts
         {
             pauseMenuUI.SetActive(true);
             GameIsPaused = true;
-            Time.timeScale = 0f;
             Cursor.lockState = CursorLockMode.None;
 
         }
@@ -76,10 +74,27 @@ namespace Assets.Scripts.PlayerScripts
             SceneManager.LoadScene(0);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
+            CloseLobby();
+           
+
 
         }
 
         public void Quit() { GameManager gm = new GameManager(); gm.QuitGame();}
+        public void CloseLobby()
+        {
 
+
+            NetworkManager.singleton.StopClient();
+            NetworkManager.singleton.StopHost();
+
+
+
+            NetworkServer.DisconnectAll();
+
+            
+        }
+
+       
     }
 }
