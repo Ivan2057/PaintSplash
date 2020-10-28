@@ -25,7 +25,6 @@ namespace Assets.Scripts.PlayerScripts
         [SerializeField] Canvas menucanvas;
         [SerializeField] GameObject muertePanel;
         [SerializeField] Canvas muerteCanvas;
-        [SerializeField] Canvas finCanvas;
         [SerializeField] Camera miCamera;
         public static List<Transform> spawnPoints = new List<Transform>();
 
@@ -107,7 +106,6 @@ namespace Assets.Scripts.PlayerScripts
                 vidacanvas.targetDisplay = 2;
                 menucanvas.targetDisplay = 2;
                 muerteCanvas.targetDisplay = 2;
-                finCanvas.targetDisplay = 2;
                 vidacanvas.enabled = false;
             }
             vidacanvas.sortingOrder = 1;
