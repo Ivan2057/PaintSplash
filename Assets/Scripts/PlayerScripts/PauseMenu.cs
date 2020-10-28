@@ -70,12 +70,11 @@ namespace Assets.Scripts.PlayerScripts
 
         public void GoToMainMenu()
         {
-            CloseLobby();
             Scene active = SceneManager.GetActiveScene();
             SceneManager.LoadScene(0);
             Cursor.lockState = CursorLockMode.None;
             Cursor.visible = true;
-            
+            CloseLobby();
            
 
 
