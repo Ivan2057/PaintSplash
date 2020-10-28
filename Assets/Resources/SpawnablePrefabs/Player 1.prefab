@@ -3423,15 +3423,15 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216927618166858877}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 493af3f69ffef584e941c1b7015bc272, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  moveSpeed: 8.6
-  runSpeed: 20
+  moveSpeed: 5
+  runSpeed: 10.23
   walkSpeed: 10
   crouchSpeed: 5
   jumpSpeed: 5
@@ -3451,8 +3451,8 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7216927618166858877}
   serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
+  m_Mass: 80.39
+  m_Drag: 2.94
   m_AngularDrag: 0.05
   m_UseGravity: 1
   m_IsKinematic: 0
