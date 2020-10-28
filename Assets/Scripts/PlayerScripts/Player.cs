@@ -100,6 +100,7 @@ namespace Assets.Scripts.PlayerScripts
                     spawnPoints = PlayerSpawnSystem.spawnPoints1;
                 }
                 canvasFin = GetComponent<EndGame>();
+                GetGameObjectsFromMap();
             }
             else
             {
@@ -490,6 +491,7 @@ namespace Assets.Scripts.PlayerScripts
         [ClientRpc]
         void RpcAddScoreToCanvas(int banderaTeam)
         {
+
             Debug.Log("RpcAddScoreCanvas");
             if (banderaTeam == 0)
             {
@@ -508,9 +510,13 @@ namespace Assets.Scripts.PlayerScripts
             if (gameModeCTF.ScoreTeam0 >= gameModeCTF.Meta)
             {
                 canvasFin.FinJuego(0);
+                menucanvas.enabled = false;
+                vidacanvas.enabled = false;
             }
             else if (gameModeCTF.ScoreTeam1 >= gameModeCTF.Meta)
             {
+                menucanvas.enabled = false;
+                vidacanvas.enabled = false;
                 canvasFin.FinJuego(1);
             }
         }
