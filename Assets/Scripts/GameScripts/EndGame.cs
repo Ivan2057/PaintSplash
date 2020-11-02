@@ -22,6 +22,7 @@ public class EndGame : MonoBehaviour
 
     public void FinJuego(int Ganador)
     {
+        Cursor.lockState = CursorLockMode.None;
         gameModeCTF = FindObjectOfType<GameModeCTF>();
         gameModeCTF.canvasPuntaje.SetActive(false);
         for (int i = 0; i < disableOnEnd.Length; i++)
