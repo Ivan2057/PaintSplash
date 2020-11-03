@@ -7,6 +7,7 @@ namespace Assets.Scripts.WeaponScripts
     [System.Serializable]
     public class PlayerWeapon : MonoBehaviour
     {
+        public int id = 0;
         public string name = "Glock";
         public int damage = 10;
         public float range = 100f;

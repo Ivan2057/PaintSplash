@@ -1714,7 +1714,7 @@ MonoBehaviour:
   syncInterval: 0.1
   teamID: 0
   isWeaponLocked: 0
-  isWeaponDropable: 0
+  isWeaponDropable: 1
   isWeaponShootable: 1
   worldWeaponGameObject: {fileID: 100004, guid: dbeb07ce6436fdc4988bcc03b8afc948,
     type: 3}
@@ -1732,6 +1732,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3d69bc2338102aa49bec5d5f8bbd627f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  id: 0
   name: Glock
   damage: 10
   range: 100
@@ -3421,6 +3422,8 @@ MonoBehaviour:
   weapons:
   - {fileID: 7913272058542557230}
   - {fileID: 4998290506580055888}
+  ObjectWeapons:
+  - {fileID: 1290200761424466685, guid: a4d21e55915802b47aa6f1e2f8719eb5, type: 3}
   currentWeapon: 0
   lastWeapon: 0
   forwardDropOffset: 2
@@ -3619,7 +3622,6 @@ MonoBehaviour:
   FinTeam0: {fileID: 4296929897576147627}
   FinTeam1: {fileID: 4605715263668942257}
   Puntaje: {fileID: 8802069404149214429}
-  fin: {fileID: 0}
   CanvasFin: {fileID: 3676046747790851013}
   disableOnEnd:
   - {fileID: 4585851276095995576}

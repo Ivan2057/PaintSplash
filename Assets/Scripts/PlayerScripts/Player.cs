@@ -16,7 +16,8 @@ namespace Assets.Scripts.PlayerScripts
         [SerializeField]
         public GameObject jugador;
         [SerializeField]
-        private GameObject pistola;
+        public GameObject pistola;
+        public bool GuninHand;
         public static NetworkConnection userConnection;
         private Rigidbody rigidBody;
         private int BanderaTeam;
@@ -53,8 +54,11 @@ namespace Assets.Scripts.PlayerScripts
 
         //weapons
         [SerializeField] public List<Weapon> weapons;
+        [SerializeField] public List<GameObject> ObjectWeapons;
+        [SerializeField] public List<GameObject> OrigenWeapons;
         [SerializeField] public int currentWeapon = 0;
         [SerializeField] int lastWeapon = 0;
+        [SerializeField] public List<GameObject> weaponsHand;
         [SerializeField] public float forwardDropOffset;
         [SerializeField] public float upDropOffset;
 
@@ -134,6 +138,7 @@ namespace Assets.Scripts.PlayerScripts
 
         public void SetDefaults()
         {
+            GuninHand = true;
             isDead = false;
             this.gameObject.GetComponent<PlayerCameraController>().vivo = true;
             currentHealth = maxHealth;
@@ -218,6 +223,15 @@ namespace Assets.Scripts.PlayerScripts
                 if (captureZone == null || Team != captureZone.teamID)   //si no fue el capturezone
                 {
                     lastCollision = objectCollider;
+                    PlayerWeapon armaTocada = objectCollider.GetComponent<PlayerWeapon>();
+                    if(armaTocada != null)
+                    {
+                        weaponsHand.Add(OrigenWeapons[armaTocada.id]);
+                        weaponsHand[0].SetActive(true);
+                        currentWeapon = armaTocada.id;
+                        objectCollider.gameObject.SetActive(false);
+                        GuninHand = true;
+                    }
                     return;
                 }
                 else //
@@ -397,6 +411,7 @@ namespace Assets.Scripts.PlayerScripts
         public void DropWeapon(int weaponID)
         {
             CmdDropWeapon(weaponID, jugador);
+            
         }
 
         [Command]
@@ -417,12 +432,31 @@ namespace Assets.Scripts.PlayerScripts
             forward *= miPlayerPeticion.forwardDropOffset;
             forward.y = miPlayerPeticion.upDropOffset;
             Vector3 dropLocation = miPlayerPeticion.transform.position + forward;
+            if (!miPlayerPeticion.weapons[weaponID].isWeaponShootable)
+            {
+                miPlayerPeticion.weapons[weaponID].DropWeapon(miPlayerPeticion.rigidBody, dropLocation);
+                miPlayerPeticion.weapons[weaponID].worldWeaponGameObject.SetActive(true);
 
-            miPlayerPeticion.weapons[weaponID].DropWeapon(miPlayerPeticion.rigidBody, dropLocation);
-            miPlayerPeticion.weapons[weaponID].worldWeaponGameObject.SetActive(true);
 
-
-            miPlayerPeticion.SwitchWeapon(miPlayerPeticion.lastWeapon, true);//if possible
+                miPlayerPeticion.SwitchWeapon(miPlayerPeticion.lastWeapon, true);
+            }
+            else
+            {
+                if (GuninHand)
+                {
+                    miPlayerPeticion.weapons[weaponID].DropGun(miPlayerPeticion.gameObject, miPlayerPeticion.ObjectWeapons[weaponID]);
+                    miPlayerPeticion.pistola.SetActive(false);
+                    for(int i = 0; i < weaponsHand.Count; i++)
+                    {
+                        if(weaponsHand[i].GetComponent<PlayerWeapon>().id == currentWeapon) { weaponsHand.RemoveAt(i); }
+                    }
+                    if(weaponsHand.Count == 0)
+                    {
+                        GuninHand = false;
+                    }
+                }
+            }
+            //if possible
             Debug.Log("Dropping Weapon/flag");
 
         }

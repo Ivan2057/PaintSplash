@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Assets.Scripts.PlayerScripts;
 using UnityEngine;
 
 namespace Assets.Scripts.WeaponScripts
@@ -104,6 +105,16 @@ namespace Assets.Scripts.WeaponScripts
             {
                 flagRigidbody.velocity = player.velocity;
             }
+        }
+        public void DropGun(GameObject player, GameObject gun)
+        {
+            Player jugador = player.GetComponent<Player>();
+            jugador.pistola.SetActive(false);
+            GameObject pistola = Instantiate(gun,
+                   player.transform.position + player.transform.forward + Vector3.up * 1.5f,
+                   player.transform.rotation);
+            pistola.transform.Rotate(15, 0, 40);
+            pistola.GetComponent<Rigidbody>().AddForce(transform.forward * 5, ForceMode.Impulse);
         }
     }
 }

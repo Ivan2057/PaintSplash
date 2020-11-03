@@ -20,10 +20,6 @@ namespace Assets.Scripts.LobbyScripts
             }
         }
 
-        public void CountdownEnded()
-        {
-            animator.enabled = false;
-        }
 
         #region Server
 
@@ -54,20 +50,11 @@ namespace Assets.Scripts.LobbyScripts
         {
             if (Room.GamePlayers.Count(x => x.connectionToClient.isReady) != Room.GamePlayers.Count) { return; }
 
-            animator.enabled = true;
-
-            RpcStartCountdown();
         }
 
         #endregion
 
-        #region Client
 
-        [ClientRpc]
-        private void RpcStartCountdown()
-        {
-            animator.enabled = true;
-        }
 
         [ClientRpc]
         private void RpcStartRound()
@@ -75,6 +62,5 @@ namespace Assets.Scripts.LobbyScripts
             InputManager.Remove(ActionMapNames.Player);
         }
 
-        #endregion
     }
 }

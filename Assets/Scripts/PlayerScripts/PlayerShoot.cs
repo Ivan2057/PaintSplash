@@ -55,32 +55,34 @@ namespace Assets.Scripts.PlayerScripts
             if (PlayerController.localPlayer)
             {
                 RaycastHit mira;
-            if (Physics.Raycast(cam.transform.position, cam.transform.forward, out mira, currentWeapon.range))
-            {
-                tag = mira.collider.name;
-            }
-
+                if (Physics.Raycast(cam.transform.position, cam.transform.forward, out mira, currentWeapon.range))
+                {
+                    tag = mira.collider.name;
+                }
+                Weapon arma = gameObject.GetComponent<Player>().weapons[gameObject.GetComponent<Player>().currentWeapon];
                 //currentWeapon = weaponManager.GetCurrentWeapon();
-            
-                if (currentWeapon.fireRate <= 0f)
+                if (arma.isWeaponShootable)
                 {
-                    if (Input.GetButtonDown("Fire1"))
+                    if (currentWeapon.fireRate <= 0f)
                     {
-                        Shoot();
+                        if (Input.GetButtonDown("Fire1"))
+                        {
+                            Shoot();
+                        }
                     }
-                }
-                else
-                {
-                    if (Input.GetButtonDown("Fire1"))
+                    else
                     {
-                        InvokeRepeating("Shoot", 0f, 1f / currentWeapon.fireRate);
+                        if (Input.GetButtonDown("Fire1"))
+                        {
+                            InvokeRepeating("Shoot", 0f, 1f / currentWeapon.fireRate);
+                        }
+                        else if (Input.GetButtonUp("Fire1"))
+                        {
+                            CancelInvoke("Shoot");
+                        }
                     }
-                    else if (Input.GetButtonUp("Fire1"))
-                    {
-                        CancelInvoke("Shoot");
-                    }
-                }
 
+                }
             }
         }
 
