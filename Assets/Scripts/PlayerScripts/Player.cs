@@ -454,6 +454,10 @@ namespace Assets.Scripts.PlayerScripts
                     {
                         GuninHand = false;
                     }
+                    else
+                    {
+                        weaponsHand[0].SetActive(true);
+                    }
                 }
             }
             //if possible

@@ -61,7 +61,7 @@ namespace Assets.Scripts.PlayerScripts
                 }
                 Weapon arma = gameObject.GetComponent<Player>().weapons[gameObject.GetComponent<Player>().currentWeapon];
                 //currentWeapon = weaponManager.GetCurrentWeapon();
-                if (arma.isWeaponShootable)
+                if (arma.isWeaponShootable && gameObject.GetComponent<Player>().GuninHand == true)
                 {
                     if (currentWeapon.fireRate <= 0f)
                     {
