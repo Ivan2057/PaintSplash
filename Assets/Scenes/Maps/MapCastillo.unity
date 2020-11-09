@@ -15045,6 +15045,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Personaje_V1_Final@Macarena Dance
       objectReference: {fileID: 0}
+    - target: {fileID: 4224801822505238522, guid: ed30e86fd026ce545bdf63233f659953,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ed30e86fd026ce545bdf63233f659953, type: 3}
 --- !u!1 &1691616506 stripped
