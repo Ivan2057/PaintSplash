@@ -17,6 +17,7 @@ namespace Assets.Scripts.PlayerScripts
         public GameObject jugador;
         [SerializeField]
         public GameObject pistola;
+        public GameObject ArmaTocada;
         public bool GuninHand;
         public static NetworkConnection userConnection;
         private Rigidbody rigidBody;
@@ -226,11 +227,9 @@ namespace Assets.Scripts.PlayerScripts
                     PlayerWeapon armaTocada = objectCollider.GetComponent<PlayerWeapon>();
                     if(armaTocada != null)
                     {
-                        weaponsHand.Add(OrigenWeapons[armaTocada.id]);
-                        weaponsHand[0].SetActive(true);
-                        currentWeapon = armaTocada.id;
-                        objectCollider.gameObject.SetActive(false);
-                        GuninHand = true;
+                        ArmaTocada = objectCollider.gameObject;
+                        AgarrarArma(this.gameObject);
+                        
                     }
                     return;
                 }
@@ -256,6 +255,27 @@ namespace Assets.Scripts.PlayerScripts
         #endregion Base Functions
 
         #region Shoot/Damage/Life/Respawn
+
+        public void AgarrarArma(GameObject jugadorAgarrador)
+        {
+            CmdAgarrarArma(jugadorAgarrador);
+        }
+
+        [Command]
+        public void CmdAgarrarArma(GameObject jugadorAgarrador)
+        {
+            RpcAgarrarArma(jugadorAgarrador);
+        }
+
+        [ClientRpc]
+        public void RpcAgarrarArma(GameObject jugadorAgarrador)
+        {
+            jugadorAgarrador.GetComponent<Player>().weaponsHand.Add(OrigenWeapons[jugadorAgarrador.GetComponent<Player>().ArmaTocada.GetComponent<PlayerWeapon>().id]);
+            jugadorAgarrador.GetComponent<Player>().weaponsHand[0].SetActive(true);
+            jugadorAgarrador.GetComponent<Player>().currentWeapon = jugadorAgarrador.GetComponent<Player>().ArmaTocada.GetComponent<PlayerWeapon>().id;
+            jugadorAgarrador.GetComponent<Player>().ArmaTocada.SetActive(false);
+            jugadorAgarrador.GetComponent<Player>().GuninHand = true;
+        }
 
         public static int DevolverVida()
         {
