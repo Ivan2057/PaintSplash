@@ -8,7 +8,7 @@ using System.Linq;
 namespace KinematicCharacterController.Walkthrough.MovingPlatform
 {
     public class MyPlayer : MonoBehaviour
-    {
+    {/*
         public ExampleCharacterCamera OrbitCamera;
         public Transform CameraFollowPoint;
         public MyCharacterController Character;
@@ -85,6 +85,7 @@ namespace KinematicCharacterController.Walkthrough.MovingPlatform
 
             // Apply inputs to character
             Character.SetInputs(ref characterInputs);
-        }
+        } */
     }
+       
 }

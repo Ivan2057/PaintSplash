@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using KinematicCharacterController;
 using KinematicCharacterController.Examples;
+using Assets.Scripts.PlayerScripts;
 
 namespace KinematicCharacterController.Walkthrough.Crouching
 {

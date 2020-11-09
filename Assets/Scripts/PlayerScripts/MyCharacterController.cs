@@ -4,7 +4,7 @@ using UnityEngine;
 using KinematicCharacterController;
 using System;
 
-namespace KinematicCharacterController.Walkthrough.FramePerfectRotation
+namespace Assets.Scripts.PlayerScripts
 {
     public struct PlayerCharacterInputs
     {

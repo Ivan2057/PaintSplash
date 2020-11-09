@@ -1447,11 +1447,12 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 9098332454913000178}
+  - component: {fileID: 3102674381566216841}
   - component: {fileID: 9098332454913000179}
   - component: {fileID: 1955446443923752548}
   - component: {fileID: 1447486113612233888}
   m_Layer: 0
-  m_Name: PlayerExamp
+  m_Name: PlayerNew1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1473,6 +1474,51 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &3102674381566216841
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9098332454913000177}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dcf1f11e5258dc74787cc1a887265985, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  syncMode: 0
+  syncInterval: 0.1
+  OrbitCamera: {fileID: 122698184043048638}
+  CameraFollowPoint: {fileID: 9098332456156563976}
+  Character: {fileID: 9098332455837330827}
+  jugador: {fileID: 0}
+  pistola: {fileID: 0}
+  GuninHand: 0
+  vidacanvas: {fileID: 0}
+  menuPanel: {fileID: 0}
+  menucanvas: {fileID: 0}
+  muertePanel: {fileID: 0}
+  muerteCanvas: {fileID: 0}
+  miCamera: {fileID: 0}
+  maxHealth: 100
+  currentHealth: 0
+  disableOnDeath: []
+  hp: {fileID: 0}
+  weapons: []
+  ObjectWeapons: []
+  OrigenWeapons: []
+  currentWeapon: 0
+  lastWeapon: 0
+  weaponsHand: []
+  forwardDropOffset: 0
+  upDropOffset: 0
+  ScoreTeam0: 0
+  ScoreTeam1: 0
+  Team: 0
+  canvasFin: {fileID: 0}
+  muertes: 0
+  kills: 0
+  points: 0
 --- !u!114 &9098332454913000179
 MonoBehaviour:
   m_ObjectHideFlags: 0

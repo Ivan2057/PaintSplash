@@ -3,8 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using KinematicCharacterController;
 using KinematicCharacterController.Examples;
-
-namespace KinematicCharacterController.Walkthrough.LandingLeavingGround
+using KinematicCharacterController.Walkthrough.LandingLeavingGround;
+namespace Assets.Scripts.PlayerScripts
 {
     public class MyPlayer : MonoBehaviour
     {
@@ -78,7 +78,7 @@ namespace KinematicCharacterController.Walkthrough.LandingLeavingGround
             characterInputs.MoveAxisForward = Input.GetAxisRaw(VerticalInput);
             characterInputs.MoveAxisRight = Input.GetAxisRaw(HorizontalInput);
             characterInputs.CameraRotation = OrbitCamera.Transform.rotation;
-            characterInputs.JumpDown = Input.GetKeyDown(KeyCode.Space);
+           // characterInputs.JumpDown = Input.GetKeyDown(KeyCode.Space);
 
             // Apply inputs to character
             Character.SetInputs(ref characterInputs);
