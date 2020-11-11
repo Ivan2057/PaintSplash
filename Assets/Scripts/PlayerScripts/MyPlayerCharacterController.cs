@@ -4,10 +4,11 @@ using UnityEngine;
 using KinematicCharacterController;
 using System.Linq;
 using Assets.Scripts.PlayerScripts;
+using Mirror;
 
 namespace KinematicCharacterController.Walkthrough.FramePerfectRotation
 {
-    public class MyPlayer : MonoBehaviour
+    public class MyPlayerCharacterController : MonoBehaviour
     {
         public ExampleCharacterCamera OrbitCamera;
         public Transform CameraFollowPoint;
@@ -33,6 +34,8 @@ namespace KinematicCharacterController.Walkthrough.FramePerfectRotation
 
         private void Update()
         {
+            if (!GetComponent<NetworkIdentity>().hasAuthority) return;
+           
             if (Input.GetMouseButtonDown(0))
             {
                 Cursor.lockState = CursorLockMode.Locked;

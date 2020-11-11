@@ -1493,6 +1493,7 @@ MonoBehaviour:
   Character: {fileID: 9098332455837330827}
   jugador: {fileID: 0}
   pistola: {fileID: 0}
+  ArmaTocada: {fileID: 0}
   GuninHand: 0
   vidacanvas: {fileID: 0}
   menuPanel: {fileID: 0}
