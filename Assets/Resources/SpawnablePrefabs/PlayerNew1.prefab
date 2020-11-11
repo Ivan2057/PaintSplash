@@ -1488,9 +1488,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  OrbitCamera: {fileID: 122698184043048638}
-  CameraFollowPoint: {fileID: 9098332456156563976}
-  Character: {fileID: 9098332455837330827}
   jugador: {fileID: 0}
   pistola: {fileID: 0}
   ArmaTocada: {fileID: 0}
@@ -1565,7 +1562,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   syncMode: 0
   syncInterval: 0.1
-  clientAuthority: 0
+  clientAuthority: 1
   localPositionSensitivity: 0.01
   localRotationSensitivity: 0.01
   localScaleSensitivity: 0.01

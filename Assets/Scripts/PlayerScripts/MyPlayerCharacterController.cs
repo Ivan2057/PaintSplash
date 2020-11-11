@@ -5,10 +5,11 @@ using KinematicCharacterController;
 using System.Linq;
 using Assets.Scripts.PlayerScripts;
 using Mirror;
+using Assets.Scripts.Inputs;
 
 namespace KinematicCharacterController.Walkthrough.FramePerfectRotation
 {
-    public class MyPlayerCharacterController : MonoBehaviour
+    public class MyPlayerCharacterController : NetworkBehaviour
     {
         public ExampleCharacterCamera OrbitCamera;
         public Transform CameraFollowPoint;
@@ -19,6 +20,8 @@ namespace KinematicCharacterController.Walkthrough.FramePerfectRotation
         private const string MouseScrollInput = "Mouse ScrollWheel";
         private const string HorizontalInput = "Horizontal";
         private const string VerticalInput = "Vertical";
+
+        public static bool localPlayer;
 
         private void Start()
         {
@@ -31,6 +34,24 @@ namespace KinematicCharacterController.Walkthrough.FramePerfectRotation
             OrbitCamera.IgnoredColliders.Clear();
             OrbitCamera.IgnoredColliders.AddRange(Character.GetComponentsInChildren<Collider>());
         }
+
+        private Controls playerControls;
+        private Controls PlayerControls
+        {
+            get
+            {
+                if (playerControls != null) return playerControls;
+                return playerControls = new Controls();
+            }
+        }
+
+        public override void OnStartAuthority()
+        {
+            enabled = true;
+
+            PlayerControls.Player.Move.performed += ctx => HandleCharacterInput();
+        }
+
 
         private void Update()
         {
