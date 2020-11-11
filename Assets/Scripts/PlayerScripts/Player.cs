@@ -19,6 +19,8 @@ namespace Assets.Scripts.PlayerScripts
         public GameObject jugador;
         [SerializeField]
         public GameObject pistola;
+        [SerializeField]
+        private GameObject granada;
         public GameObject ArmaTocada;
         public bool GuninHand;
         public static NetworkConnection userConnection;
@@ -212,8 +214,12 @@ namespace Assets.Scripts.PlayerScripts
             {
                 DropWeapon(currentWeapon);
             }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+               throwGranade(this.gameObject);
+            }
 
-          
+
         }
 
 
@@ -260,7 +266,26 @@ namespace Assets.Scripts.PlayerScripts
         #endregion Base Functions
 
         #region Shoot/Damage/Life/Respawn
-
+        public void throwGranade(GameObject jugadorTirador)
+        {
+            CmdthrowGranade(jugadorTirador);
+        }
+        [Command]
+        public void CmdthrowGranade(GameObject jugadorTirador)
+        {
+            RpcthrowGranade(jugadorTirador);
+        }
+        [ClientRpc]
+        public void RpcthrowGranade(GameObject jugadorTirador)
+        {
+            Player jugador = jugadorTirador.GetComponent<Player>();
+            GameObject granade = Instantiate(granada,
+                   jugadorTirador.transform.position + jugadorTirador.transform.forward + Vector3.up * 1.5f,
+                   jugadorTirador.transform.rotation);
+            granade.transform.Rotate(15, 0, 40);
+            granade.GetComponent<Rigidbody>().AddForce(transform.forward * 6, ForceMode.Impulse);
+            granade.GetComponent<Granada>().tirador = this.gameObject;
+        }
         public void AgarrarArma(GameObject jugadorAgarrador)
         {
             CmdAgarrarArma(jugadorAgarrador);
@@ -470,7 +495,7 @@ namespace Assets.Scripts.PlayerScripts
                 if (GuninHand)
                 {
                     miPlayerPeticion.weapons[weaponID].DropGun(miPlayerPeticion.gameObject, miPlayerPeticion.ObjectWeapons[weaponID]);
-                    miPlayerPeticion.pistola.SetActive(false);
+                    Destroy(miPlayerPeticion.pistola);
                     for (int i = 0; i < weaponsHand.Count; i++)
                     {
                         if (weaponsHand[i].GetComponent<PlayerWeapon>().id == currentWeapon) { weaponsHand.RemoveAt(i); }
