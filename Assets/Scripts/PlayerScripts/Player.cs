@@ -495,7 +495,7 @@ namespace Assets.Scripts.PlayerScripts
                 if (GuninHand)
                 {
                     miPlayerPeticion.weapons[weaponID].DropGun(miPlayerPeticion.gameObject, miPlayerPeticion.ObjectWeapons[weaponID]);
-                    Destroy(miPlayerPeticion.pistola);
+                    
                     for (int i = 0; i < weaponsHand.Count; i++)
                     {
                         if (weaponsHand[i].GetComponent<PlayerWeapon>().id == currentWeapon) { weaponsHand.RemoveAt(i); }
