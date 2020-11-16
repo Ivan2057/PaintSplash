@@ -227,21 +227,26 @@ namespace Assets.Scripts.PlayerScripts
         [Client]
         private void OnTriggerEnter(Collider objectCollider)
         {
+            lastCollision = objectCollider;
+            PlayerWeapon armaTocada = objectCollider.GetComponent<PlayerWeapon>();
+            if (armaTocada != null)
+            {
+                ArmaTocada = objectCollider.gameObject;
+              //  AgarrarArma(this.gameObject);
+               weaponsHand.Add(OrigenWeapons[ArmaTocada.GetComponent<PlayerWeapon>().id]);
+                weaponsHand[0].SetActive(true);
+                currentWeapon = ArmaTocada.GetComponent<PlayerWeapon>().id;
+                ArmaTocada.SetActive(false);
+                GuninHand = true;
 
+            }
             if (GetComponent<NetworkIdentity>().hasAuthority)
             {
 
                 CaptureZone captureZone = objectCollider.GetComponent<CaptureZone>();
                 if (captureZone == null || Team != captureZone.teamID)   //si no fue el capturezone
                 {
-                    lastCollision = objectCollider;
-                    PlayerWeapon armaTocada = objectCollider.GetComponent<PlayerWeapon>();
-                    if (armaTocada != null)
-                    {
-                        ArmaTocada = objectCollider.gameObject;
-                        AgarrarArma(this.gameObject);
-                        
-                    }
+                    
                     return;
                 }
                 else //
