@@ -50,6 +50,7 @@ namespace Assets.Scripts.PlayerScripts
         public int currentHealth;
 
         public static int vida;
+        public int cantGranadas;
 
         [SerializeField]
         private Behaviour[] disableOnDeath;
@@ -212,11 +213,16 @@ namespace Assets.Scripts.PlayerScripts
             this.hp.text = this.currentHealth.ToString();
             if (Input.GetKeyDown(KeyCode.X))
             {
-                DropWeapon(currentWeapon);
+
+                    DropWeapon(currentWeapon);
+                
             }
             if (Input.GetKeyDown(KeyCode.E))
             {
-               throwGranade(this.gameObject);
+                if (cantGranadas > 0)
+                {
+                    throwGranade(this.gameObject);
+                }
             }
 
 
@@ -229,24 +235,30 @@ namespace Assets.Scripts.PlayerScripts
         {
             lastCollision = objectCollider;
             PlayerWeapon armaTocada = objectCollider.GetComponent<PlayerWeapon>();
-            if (armaTocada != null)
-            {
-                ArmaTocada = objectCollider.gameObject;
-              //  AgarrarArma(this.gameObject);
-               weaponsHand.Add(OrigenWeapons[ArmaTocada.GetComponent<PlayerWeapon>().id]);
-                weaponsHand[0].SetActive(true);
-                currentWeapon = ArmaTocada.GetComponent<PlayerWeapon>().id;
-                ArmaTocada.SetActive(false);
-                GuninHand = true;
-
-            }
+            
             if (GetComponent<NetworkIdentity>().hasAuthority)
             {
 
                 CaptureZone captureZone = objectCollider.GetComponent<CaptureZone>();
                 if (captureZone == null || Team != captureZone.teamID)   //si no fue el capturezone
                 {
-                    
+                    if (armaTocada != null)
+                    {
+                        if (weaponsHand.Count < 2)
+                        {
+                            ArmaTocada = objectCollider.gameObject;
+                            //  AgarrarArma(this.gameObject);
+                            weaponsHand.Add(OrigenWeapons[ArmaTocada.GetComponent<PlayerWeapon>().id]);
+                            weaponsHand[0].SetActive(true);
+                            if (currentWeapon != 1)
+                            {
+                                currentWeapon = ArmaTocada.GetComponent<PlayerWeapon>().id;
+                            }
+                            ArmaTocada.SetActive(false);
+                            GuninHand = true;
+
+                        }
+                    }
                     return;
                 }
                 else //
@@ -264,6 +276,23 @@ namespace Assets.Scripts.PlayerScripts
                             CmdUpdateScore(Team);
                         }
                     }
+                }
+            }
+            if (armaTocada != null)
+            {
+                if (weaponsHand.Count < 2)
+                {
+                    ArmaTocada = objectCollider.gameObject;
+                    //  AgarrarArma(this.gameObject);
+                    weaponsHand.Add(OrigenWeapons[ArmaTocada.GetComponent<PlayerWeapon>().id]);
+                    weaponsHand[0].SetActive(true);
+                    if (currentWeapon != 1)
+                    {
+                        currentWeapon = ArmaTocada.GetComponent<PlayerWeapon>().id;
+                    }
+                    ArmaTocada.SetActive(false);
+                    GuninHand = true;
+
                 }
             }
         }
@@ -284,6 +313,7 @@ namespace Assets.Scripts.PlayerScripts
         public void RpcthrowGranade(GameObject jugadorTirador)
         {
             Player jugador = jugadorTirador.GetComponent<Player>();
+            jugador.cantGranadas--;
             GameObject granade = Instantiate(granada,
                    jugadorTirador.transform.position + jugadorTirador.transform.forward + Vector3.up * 1.5f,
                    jugadorTirador.transform.rotation);
@@ -393,6 +423,7 @@ namespace Assets.Scripts.PlayerScripts
 
             muertePanel.SetActive(false);
             vidacanvas.enabled = true;
+            cantGranadas = 2;
 
             int i = UnityEngine.Random.Range(0, spawnPoints.Count);
             transform.position = spawnPoints[i].position;

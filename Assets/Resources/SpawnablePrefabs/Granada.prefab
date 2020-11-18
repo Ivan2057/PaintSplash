@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4276360628302977076}
   - component: {fileID: -1448123923363256532}
   - component: {fileID: -3213133780516987393}
-  - component: {fileID: 7940908979835441893}
+  - component: {fileID: 5086099529331072528}
   m_Layer: 0
   m_Name: Granada
   m_TagString: Untagged
@@ -88,7 +88,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &7940908979835441893
+--- !u!114 &5086099529331072528
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,6 +101,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   tirador: {fileID: 0}
+  efecto: {fileID: 100006, guid: 28ccd38a41e256a4e8fea96f5a8d039d, type: 3}
 --- !u!1 &2826750125286922936
 GameObject:
   m_ObjectHideFlags: 0

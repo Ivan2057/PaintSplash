@@ -1,52 +1,57 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-using Assets.Scripts.PlayerScripts;
 
-public class Granada : MonoBehaviour
+namespace Assets.Scripts.PlayerScripts
 {
-    public GameObject tirador;
-    private float cuentaregresiva = 3;
-    void Update()
+    public class Granada : MonoBehaviour
     {
-        cuentaregresiva -= Time.deltaTime;
-        if(cuentaregresiva <= 0)
+        public GameObject tirador;
+        [SerializeField]
+        private GameObject efecto;
+        private float cuentaregresiva = 3;
+        void Update()
         {
-            Explode();
-        }
-    }
-    public void Explode()
-    {
-        Collider[] collidersHealth = Physics.OverlapSphere(transform.position, 6);
-
-        foreach (Collider nearbyObject in collidersHealth)
-        {
-            Debug.Log("Exploto");
-            if (nearbyObject.tag == "Player")
+            cuentaregresiva -= Time.deltaTime;
+            if (cuentaregresiva <= 0)
             {
-                Debug.Log("Found enemy or a player");
-                Debug.Log("Collided with " + nearbyObject.name);
+                Explode();
+            }
+        }
+        public void Explode()
+        {
+            Collider[] collidersHealth = Physics.OverlapSphere(transform.position, 6);
 
-                RaycastHit dmg;
-                if (Physics.Linecast(transform.position, nearbyObject.transform.position, out dmg, 5))
+            foreach (Collider nearbyObject in collidersHealth)
+            {
+                Debug.Log("Exploto");
+                if (nearbyObject.tag == "Player")
                 {
-                    Player jugador = dmg.collider.GetComponent<Player>();
+                    Debug.Log("Found enemy or a player");
+                    Debug.Log("Collided with " + nearbyObject.name);
 
-                    if (dmg.collider == nearbyObject)
+                    RaycastHit dmg;
+                    if (Physics.Linecast(transform.position, nearbyObject.transform.position, out dmg, 5))
                     {
-                        Debug.Log("No Obstructions");
-                        if (dmg.rigidbody)
-                            dmg.rigidbody.AddExplosionForce(300, transform.position, 4, 50f);
-                        if (jugador != null)
+                        Player jugador = dmg.collider.GetComponent<Player>();
+
+                        if (dmg.collider == nearbyObject)
                         {
-                            jugador.RpcTakeDamage(50, nearbyObject.gameObject,tirador);
-                            Debug.Log("enemy hit");
+                            Debug.Log("No Obstructions");
+                            if (dmg.rigidbody)
+                                dmg.rigidbody.AddExplosionForce(300, transform.position, 4, 50f);
+                            if (jugador != null)
+                            {
+                                jugador.RpcTakeDamage(50, nearbyObject.gameObject, tirador);
+                                Debug.Log("enemy hit");
+                            }
                         }
                     }
                 }
+                
             }
-
+            Instantiate(efecto, transform.position, transform.rotation);
+            Destroy(this.gameObject);
         }
-        Destroy(this.gameObject);
     }
 }
