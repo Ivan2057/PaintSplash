@@ -67,7 +67,7 @@ namespace KinematicCharacterController.Walkthrough.FramePerfectRotation
 
             Character.PostInputUpdate(Time.deltaTime);
         }
-
+        [Client]
         private void HandleCameraInput()
         {
             // Create the look input vector for the camera
