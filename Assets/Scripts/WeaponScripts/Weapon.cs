@@ -60,12 +60,12 @@ namespace Assets.Scripts.WeaponScripts
         public void DropWeapon(Rigidbody player, Vector3 dropLocation)
         {
             
-            float distanceToDrop = Vector3.Distance(Camera.allCameras[1].transform.position, dropLocation);
-            Vector3 directionToDrop = (dropLocation - Camera.allCameras[1].transform.position).normalized;
+            float distanceToDrop = Vector3.Distance(Camera.allCameras[0].transform.position, dropLocation);
+            Vector3 directionToDrop = (dropLocation - Camera.allCameras[0].transform.position).normalized;
 
 
             //ray to drop location
-            Ray rayToDropLocation = new Ray(Camera.allCameras[1].transform.position, directionToDrop * distanceToDrop);
+            Ray rayToDropLocation = new Ray(Camera.allCameras[0].transform.position, directionToDrop * distanceToDrop);
             RaycastHit raycastHit;
            
             if (Physics.Raycast(rayToDropLocation, out raycastHit, distanceToDrop))

@@ -19,6 +19,8 @@ namespace Assets.Scripts.PlayerScripts
         public GameObject jugador;
         [SerializeField]
         public GameObject pistola;
+        [SerializeField]
+        private GameObject granada;
         public GameObject ArmaTocada;
         public bool GuninHand;
         public static NetworkConnection userConnection;
@@ -48,6 +50,7 @@ namespace Assets.Scripts.PlayerScripts
         public int currentHealth;
 
         public static int vida;
+        public int cantGranadas;
 
         [SerializeField]
         private Behaviour[] disableOnDeath;
@@ -210,10 +213,19 @@ namespace Assets.Scripts.PlayerScripts
             this.hp.text = this.currentHealth.ToString();
             if (Input.GetKeyDown(KeyCode.X))
             {
-                DropWeapon(currentWeapon);
+
+                    DropWeapon(currentWeapon);
+                
+            }
+            if (Input.GetKeyDown(KeyCode.E))
+            {
+                if (cantGranadas > 0)
+                {
+                    throwGranade(this.gameObject);
+                }
             }
 
-          
+
         }
 
 
@@ -221,20 +233,31 @@ namespace Assets.Scripts.PlayerScripts
         [Client]
         private void OnTriggerEnter(Collider objectCollider)
         {
-
+            lastCollision = objectCollider;
+            PlayerWeapon armaTocada = objectCollider.GetComponent<PlayerWeapon>();
+            
             if (GetComponent<NetworkIdentity>().hasAuthority)
             {
 
                 CaptureZone captureZone = objectCollider.GetComponent<CaptureZone>();
                 if (captureZone == null || Team != captureZone.teamID)   //si no fue el capturezone
                 {
-                    lastCollision = objectCollider;
-                    PlayerWeapon armaTocada = objectCollider.GetComponent<PlayerWeapon>();
                     if (armaTocada != null)
                     {
-                        ArmaTocada = objectCollider.gameObject;
-                        AgarrarArma(this.gameObject);
-                        
+                        if (weaponsHand.Count < 2)
+                        {
+                            ArmaTocada = objectCollider.gameObject;
+                            //  AgarrarArma(this.gameObject);
+                            weaponsHand.Add(OrigenWeapons[ArmaTocada.GetComponent<PlayerWeapon>().id]);
+                            weaponsHand[0].SetActive(true);
+                            if (currentWeapon != 1)
+                            {
+                                currentWeapon = ArmaTocada.GetComponent<PlayerWeapon>().id;
+                            }
+                            ArmaTocada.SetActive(false);
+                            GuninHand = true;
+
+                        }
                     }
                     return;
                 }
@@ -255,12 +278,49 @@ namespace Assets.Scripts.PlayerScripts
                     }
                 }
             }
+            if (armaTocada != null)
+            {
+                if (weaponsHand.Count < 2)
+                {
+                    ArmaTocada = objectCollider.gameObject;
+                    //  AgarrarArma(this.gameObject);
+                    weaponsHand.Add(OrigenWeapons[ArmaTocada.GetComponent<PlayerWeapon>().id]);
+                    weaponsHand[0].SetActive(true);
+                    if (currentWeapon != 1)
+                    {
+                        currentWeapon = ArmaTocada.GetComponent<PlayerWeapon>().id;
+                    }
+                    ArmaTocada.SetActive(false);
+                    GuninHand = true;
+
+                }
+            }
         }
 
         #endregion Base Functions
 
         #region Shoot/Damage/Life/Respawn
-
+        public void throwGranade(GameObject jugadorTirador)
+        {
+            CmdthrowGranade(jugadorTirador);
+        }
+        [Command]
+        public void CmdthrowGranade(GameObject jugadorTirador)
+        {
+            RpcthrowGranade(jugadorTirador);
+        }
+        [ClientRpc]
+        public void RpcthrowGranade(GameObject jugadorTirador)
+        {
+            Player jugador = jugadorTirador.GetComponent<Player>();
+            jugador.cantGranadas--;
+            GameObject granade = Instantiate(granada,
+                   jugadorTirador.transform.position + jugadorTirador.transform.forward + Vector3.up * 1.5f,
+                   jugadorTirador.transform.rotation);
+            granade.transform.Rotate(15, 0, 40);
+            granade.GetComponent<Rigidbody>().AddForce(transform.forward * 6, ForceMode.Impulse);
+            granade.GetComponent<Granada>().tirador = this.gameObject;
+        }
         public void AgarrarArma(GameObject jugadorAgarrador)
         {
             CmdAgarrarArma(jugadorAgarrador);
@@ -363,6 +423,7 @@ namespace Assets.Scripts.PlayerScripts
 
             muertePanel.SetActive(false);
             vidacanvas.enabled = true;
+            cantGranadas = 2;
 
             int i = UnityEngine.Random.Range(0, spawnPoints.Count);
             transform.position = spawnPoints[i].position;
@@ -470,7 +531,7 @@ namespace Assets.Scripts.PlayerScripts
                 if (GuninHand)
                 {
                     miPlayerPeticion.weapons[weaponID].DropGun(miPlayerPeticion.gameObject, miPlayerPeticion.ObjectWeapons[weaponID]);
-                    miPlayerPeticion.pistola.SetActive(false);
+                    
                     for (int i = 0; i < weaponsHand.Count; i++)
                     {
                         if (weaponsHand[i].GetComponent<PlayerWeapon>().id == currentWeapon) { weaponsHand.RemoveAt(i); }
