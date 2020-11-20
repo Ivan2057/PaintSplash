@@ -264,7 +264,7 @@ namespace Assets.Scripts.PlayerScripts
                 }
                 else //
                 {
-                    if (lastCollision == objectCollider)
+                    if (objectCollider.gameObject.GetComponent<CaptureZone>() == null)
                     {
                         return;
                     }
@@ -277,6 +277,7 @@ namespace Assets.Scripts.PlayerScripts
                             CmdUpdateScore(Team);
                         }
                     }
+                    return;
                 }
             }
             if (armaTocada != null)
