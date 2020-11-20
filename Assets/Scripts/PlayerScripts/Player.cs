@@ -149,6 +149,7 @@ namespace Assets.Scripts.PlayerScripts
             isDead = false;
             this.gameObject.GetComponent<PlayerCameraController>().vivo = true;
             currentHealth = maxHealth;
+            cantGranadas = 2;
             //jugador.AddComponent<Material>
 
 
@@ -423,7 +424,7 @@ namespace Assets.Scripts.PlayerScripts
 
             muertePanel.SetActive(false);
             vidacanvas.enabled = true;
-            cantGranadas = 2;
+            
 
             int i = UnityEngine.Random.Range(0, spawnPoints.Count);
             transform.position = spawnPoints[i].position;

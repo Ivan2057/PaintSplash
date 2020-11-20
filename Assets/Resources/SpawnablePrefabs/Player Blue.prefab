@@ -64,7 +64,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_text: 'Team: Red'
+  m_text: 'Team: Blue'
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
   m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
@@ -73,8 +73,8 @@ MonoBehaviour:
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4278190335
-  m_fontColor: {r: 1, g: 0, b: 0, a: 1}
+    rgba: 4294903552
+  m_fontColor: {r: 0, g: 0.027116776, b: 1, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_margin: {x: 0, y: 0, z: 289.07156, w: 0}
   m_textInfo:
     textComponent: {fileID: 7719114756492859561}
-    characterCount: 9
+    characterCount: 10
     spriteCount: 0
     spaceCount: 1
     wordCount: 2
@@ -3186,7 +3186,7 @@ GameObject:
   - component: {fileID: 7619729989880306949}
   - component: {fileID: -5784354388834354043}
   m_Layer: 0
-  m_Name: Player 2
+  m_Name: Player Blue
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3319,7 +3319,7 @@ MonoBehaviour:
   upDropOffset: 1
   ScoreTeam0: 0
   ScoreTeam1: 0
-  Team: 1
+  Team: 0
   canvasFin: {fileID: 9053762534816356352}
   muertes: 0
   kills: 0
@@ -3417,10 +3417,8 @@ MonoBehaviour:
   CanBeShoot:
     serializedVersion: 2
     m_Bits: 4294967295
-  efecto: {fileID: 5546216449953451242}
-  posefect: {fileID: 0}
   tag: 
-  bulletHolePrefab: {fileID: 6491150453938503772, guid: 30ebba6dee6ec0e428a8cadacffffa2c,
+  bulletHolePrefab: {fileID: 6491150453938503772, guid: c52be1b05b0445c42aabb3620ddf690f,
     type: 3}
   disableOnClient: []
   cam: {fileID: 4514055556406051996}
@@ -4717,7 +4715,7 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: 8d2f16ed91f28f642bfa6d95f190d2a5, type: 2}
+      objectReference: {fileID: 2100000, guid: 7b4a4dfa194e7094dbb6336201695321, type: 2}
     - target: {fileID: -6057140222963153312, guid: d81dcd5da92ce0746b73ce9b340d9601,
         type: 3}
       propertyPath: m_Controller
