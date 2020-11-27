@@ -36,7 +36,7 @@ namespace KinematicCharacterController.Walkthrough.SimpleJumping
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.lockState = CursorLockMode.Locked;
             }
 
             HandleCameraInput();

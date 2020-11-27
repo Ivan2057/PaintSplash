@@ -36,7 +36,7 @@ namespace KinematicCharacterController.Walkthrough.MultipleMovementStates
         {
             if (Input.GetMouseButtonDown(0))
             {
-                Cursor.lockState = CursorLockMode.Locked;
+                //Cursor.lockState = CursorLockMode.Locked;
             }
 
             HandleCameraInput();
