@@ -29,6 +29,7 @@ namespace Assets.Scripts.PlayerScripts
         private WeaponManager weaponManager;
         PlayerShoot playershoter;
         RaycastHit _hit;
+        public AudioSource sonidodedisparo;
         
 
 
@@ -36,6 +37,10 @@ namespace Assets.Scripts.PlayerScripts
 
         void Start()
         {
+            if (gameObject.GetComponent<NetworkIdentity>().hasAuthority)
+            {
+                sonidodedisparo = currentWeapon.gameObject.GetComponent<AudioSource>();
+            }
             if (cam == null)
             {
                 Debug.LogError("PlayerShoot: No camera referenced!");
@@ -54,6 +59,7 @@ namespace Assets.Scripts.PlayerScripts
         {
             if (PlayerController.localPlayer)
             {
+                currentWeapon = this.gameObject.GetComponent<Player>().weaponsHand[0].GetComponent<PlayerWeapon>();
                 RaycastHit mira;
                 if (Physics.Raycast(cam.transform.position, cam.transform.forward, out mira, currentWeapon.range))
                 {
@@ -135,6 +141,7 @@ namespace Assets.Scripts.PlayerScripts
         {
             PlayerShoot playerDisparo = ObjectplayerDisparo.GetComponent<PlayerShoot>();
             RaycastHit _hitDisparo;
+           
             Physics.Raycast(playerDisparo.cam.transform.position, playerDisparo.cam.transform.forward, out _hitDisparo, playerDisparo.currentWeapon.range, mask);
             if (LeDio)
             {
@@ -153,12 +160,22 @@ namespace Assets.Scripts.PlayerScripts
                 
 
             }
+            playerDisparo.sonidodedisparo.Play();
+            playerDisparo.SetEffectoOn(ObjectplayerDisparo);
 
         }
         [Command]
         void CmdBulletHole(GameObject playerDisparo)
             {
             RpcBulletHoles(playerDisparo,false);
+        }
+
+        public void SetEffectoOn(GameObject persona)
+        {
+
+            persona.GetComponent<PlayerShoot>().currentWeapon.graphics.GetComponent<ParticleSystem>().Play();
+            new WaitForSeconds(0.1f);
+            persona.GetComponent<PlayerShoot>().currentWeapon.graphics.GetComponent<ParticleSystem>().Stop();
         }
     }
     
